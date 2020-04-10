@@ -16,11 +16,11 @@ import javax.swing.JScrollPane;
 import cs5004.animator.model.AnimationModelImpl;
 
 /**
- * This class creates the Visual animation view using JFrame, JPanel and Graphics2D objects. panels
- *     repaint themselves for every tick of the model. JPanel is extended to update the paint method
- *     and create the animation itself.
+ * This class creates the a visual animation view using JFrame, JPanel and Graphics2D objects.
+ *     This view also supports panels which repaint themselves for every tick of the model.
+ *     JPanel is extended to update the paint method and create the animation itself.
  */
-public class PlaybackAnimationView extends JFrame {
+public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
 
   private AnimationModelImpl myModel;
@@ -71,6 +71,41 @@ public class PlaybackAnimationView extends JFrame {
       }
     }
 
+
+  }
+
+  @Override
+  public void rewind() {
+
+  }
+
+  @Override
+  public void pause() {
+
+  }
+
+  @Override
+  public void play() {
+
+  }
+
+  @Override
+  public void enableLoop() {
+
+  }
+
+  @Override
+  public void disableLoop() {
+
+  }
+
+  @Override
+  public void increaseSpeed() {
+
+  }
+
+  @Override
+  public void decreaseSpeed() {
 
   }
 

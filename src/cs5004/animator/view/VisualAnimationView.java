@@ -70,8 +70,6 @@ public class VisualAnimationView extends JFrame {
         e.printStackTrace();
       }
     }
-
-
   }
 
   /**

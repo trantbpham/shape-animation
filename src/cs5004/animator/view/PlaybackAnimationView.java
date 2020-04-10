@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.RenderingHints;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 //import javax.swing.*;
 import javax.swing.JFrame;
@@ -71,6 +72,11 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
       }
     }
 
+
+  }
+
+  @Override
+  public void setListener(ActionListener listener) {
 
   }
 

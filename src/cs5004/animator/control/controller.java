@@ -24,6 +24,23 @@ public class Controller implements ActionListener, KeyListener {
   }
   @Override
   public void actionPerformed(ActionEvent e) {
+    switch (e.getActionCommand()) {
+
+      case "Play Button":
+        view.play();
+      case "Pause Button":
+        view.pause();
+      case "Rewind Button":
+        view.rewind();
+      case "Increase Speed Button":
+        view.increaseSpeed();
+      case "Decrease Speed Button":
+        view.decreaseSpeed();
+      case "Loop Enabler Button":
+        view.enableLoop();
+      case "Loop Disabler Button":
+        view.disableLoop();
+    }
 
   }
 

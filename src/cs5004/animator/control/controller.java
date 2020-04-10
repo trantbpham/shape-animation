@@ -2,6 +2,8 @@ package cs5004.animator.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -9,7 +11,7 @@ import cs5004.animator.model.AnimationModel;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.view.PlaybackAnimationView;
 
-public class Controller implements ActionListener, MouseListener {
+public class Controller implements ActionListener, MouseListener, KeyListener {
 
   private PlaybackAnimationView view;
   private AnimationModelImpl model;
@@ -25,7 +27,7 @@ public class Controller implements ActionListener, MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent e) {
-    
+
   }
 
   @Override
@@ -45,6 +47,21 @@ public class Controller implements ActionListener, MouseListener {
 
   @Override
   public void mouseExited(MouseEvent e) {
+
+  }
+
+  @Override
+  public void keyTyped(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
 
   }
 }

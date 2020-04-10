@@ -11,44 +11,22 @@ import cs5004.animator.model.AnimationModel;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.view.PlaybackAnimationView;
 
-public class Controller implements ActionListener, MouseListener, KeyListener {
+public class Controller implements ActionListener, KeyListener {
 
   private PlaybackAnimationView view;
   private AnimationModelImpl model;
+  private MouseListenerControl mouse;
 
   public Controller(PlaybackAnimationView view, AnimationModelImpl model) {
     this.view = view;
     this.model = model;
+
   }
   @Override
   public void actionPerformed(ActionEvent e) {
 
   }
 
-  @Override
-  public void mouseClicked(MouseEvent e) {
-
-  }
-
-  @Override
-  public void mousePressed(MouseEvent e) {
-
-  }
-
-  @Override
-  public void mouseReleased(MouseEvent e) {
-
-  }
-
-  @Override
-  public void mouseEntered(MouseEvent e) {
-
-  }
-
-  @Override
-  public void mouseExited(MouseEvent e) {
-
-  }
 
   @Override
   public void keyTyped(KeyEvent e) {

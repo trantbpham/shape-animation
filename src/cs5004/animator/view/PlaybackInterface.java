@@ -1,5 +1,7 @@
 package cs5004.animator.view;
 
+import java.awt.event.ActionListener;
+
 /**
  * This class creates the a visual animation view using JFrame, JPanel and Graphics2D objects.
  *     This view also supports commands during the animation from a controller class.
@@ -7,6 +9,8 @@ package cs5004.animator.view;
  *     update the paint method and create the animation itself.
  */
 public interface PlaybackInterface {
+
+  public void setListener(ActionListener listener);
 
   public void rewind();
 

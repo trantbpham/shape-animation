@@ -3,7 +3,9 @@ package cs5004.animator.view;
 //import java.awt.;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -41,7 +43,8 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   private boolean play;
   private boolean reverse;
   private boolean pause;
-
+  private InputMap inputMap;
+  private ActionMap actionMap;
 
 
   /**
@@ -107,9 +110,15 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     //buttons
     JButton playButton = new JButton(PLAY);
     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), PLAY);
+    actionMap.put(PLAY, new AbstractAction() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        playButton.doClick();
+      }
+    });
     playButton.addActionListener(controller);
     playButton.setActionCommand(playButton.getText());
-    playButton.setMnemonic('S');
     buttonPanel.add(playButton);
 
     JButton pauseButton = new JButton(PAUSE);

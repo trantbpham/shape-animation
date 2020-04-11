@@ -77,21 +77,6 @@ public class Controller implements ActionListener, KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
-    switch (e.getKeyChar()) {
-      case 'S':
-        view.play();
-      case 'P':
-        view.pause();
-      case 'R':
-        view.rewind();
-      case 'I':
-        view.increaseSpeed();
-      case 'D':
-        view.decreaseSpeed();
-      case 'E':
-        view.enableLoop();
-      case 'K':
-        view.disableLoop();
-    }
+   keyPressed(e);
   }
 }

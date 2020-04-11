@@ -104,41 +104,49 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     playButton.addActionListener(controller);
     playButton.setActionCommand(playButton.getText());
+    //playButton.setMnemonic('S');
     buttonPanel.add(playButton);
 
     JButton pauseButton = new JButton(PAUSE);
     pauseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     pauseButton.addActionListener(controller);
+    //playButton.setMnemonic('P');
     pauseButton.setActionCommand(pauseButton.getText());
+
     buttonPanel.add(pauseButton);
 
     JButton rewindButton = new JButton(REWIND);
     rewindButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     rewindButton.addActionListener(controller);
+    //playButton.setMnemonic('W');
     rewindButton.setActionCommand(rewindButton.getText());
     buttonPanel.add(rewindButton);
 
     enableLoopButton = new JButton(ENABLE_LOOP);
     enableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     enableLoopButton.addActionListener(controller);
+    //playButton.setMnemonic('E');
     enableLoopButton.setActionCommand(enableLoopButton.getText());
     buttonPanel.add(enableLoopButton);
 
     JButton disableLoopButton = new JButton(DISABLE_LOOP);
     disableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     disableLoopButton.addActionListener(controller);
+    //playButton.setMnemonic('D');
     disableLoopButton.setActionCommand(disableLoopButton.getText());
     buttonPanel.add(disableLoopButton);
 
     JButton increaseSpeedButton = new JButton(INCREASE_SPEED);
     increaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     increaseSpeedButton.addActionListener(controller);
+    //playButton.setMnemonic('I');
     increaseSpeedButton.setActionCommand(increaseSpeedButton.getText());
     buttonPanel.add(increaseSpeedButton);
 
     JButton decreaseSpeedButton = new JButton(DECREASE_SPEED);
     decreaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     decreaseSpeedButton.addActionListener(controller);
+    //playButton.setMnemonic('K');
     decreaseSpeedButton.setActionCommand(decreaseSpeedButton.getText());
     buttonPanel.add(decreaseSpeedButton);
 

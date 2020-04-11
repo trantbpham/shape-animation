@@ -1,18 +1,11 @@
 package cs5004.animator.view;
 
 //import java.awt.;
-import java.awt.FlowLayout;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.RenderingHints;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 //import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
 import cs5004.animator.model.AnimationModelImpl;
 
@@ -23,10 +16,19 @@ import cs5004.animator.model.AnimationModelImpl;
  */
 public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
-
+  private JButton playButton, pauseButton, rewindButton,increaseSpeedButton,decreaseSpeedButton,enableLoopButton,
+                  disableLoopButton;
   private AnimationModelImpl myModel;
   private int leftBoundOffset;
   private int topBoundOffset;
+  private boolean loop;
+  private Timer timer;
+  private double frameDelay;
+  private int animationLength;
+  private boolean play;
+  private boolean reverse;
+  private boolean pause;
+  private JPanel buttonPanel;
 
 
   /**
@@ -37,7 +39,13 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
    * @param speed - the speed of the animation
    */
   public PlaybackAnimationView(AnimationModelImpl model, int speed) {
-    MyPanel panel;
+    frameDelay = 1000/speed;
+    MyPanel animationPanel;
+    loop = true;
+    animationLength = model.getLongestLife();
+    play = true;
+    reverse = false;
+    pause = false;
 
     this.myModel = model;
 
@@ -48,32 +56,111 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     this.setLocation(leftBoundOffset, topBoundOffset);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    this.setLayout(new FlowLayout());
+    this.setLayout(new BorderLayout());
 
-    panel = new MyPanel();
-    panel.setPreferredSize(new Dimension(myModel.getWidth(), myModel.getHeight()));
-    this.add(panel);
+    animationPanel = new MyPanel();
+    animationPanel.setPreferredSize(new Dimension(myModel.getWidth(), myModel.getHeight()));
+    this.add(animationPanel, BorderLayout.CENTER);
 
-    JScrollPane scrollPane = new JScrollPane(panel);
+    //Adding scroll pane if animation extends beyond pane view
+    JScrollPane scrollPane = new JScrollPane(animationPanel);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     scrollPane.setPreferredSize(new Dimension(myModel.getWidth(), myModel.getHeight()));
     this.add(scrollPane);
 
+    //button panel
+    buttonPanel = new JPanel();
+    buttonPanel.setLayout(new FlowLayout());
+    this.add(buttonPanel, BorderLayout.SOUTH);
+
+    //buttons
+    playButton = new JButton("Play");
+    buttonPanel.add(playButton);
+
+    pauseButton = new JButton("Pause");
+    buttonPanel.add(pauseButton);
+
+    rewindButton = new JButton("Rewind");
+    buttonPanel.add(rewindButton);
+
+    enableLoopButton = new JButton("Enable Loop");
+    buttonPanel.add(enableLoopButton);
+
+    disableLoopButton = new JButton("Disable Loop");
+    buttonPanel.add(disableLoopButton);
+
+    increaseSpeedButton = new JButton("Increase Speed");
+    buttonPanel.add(increaseSpeedButton);
+
+    decreaseSpeedButton = new JButton("Decrease Speed");
+    buttonPanel.add(decreaseSpeedButton);
+
+
     this.setVisible(true);
 
-    for (int i = 0; i < myModel.getLongestLife(); i++) {
-      panel.nextTime();
-      panel.repaint();
-      try {
-        Thread.sleep(1000 / speed);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
+    while(true) {
+      if(pause){
+        continue;
       }
+
+      if(play && animationPanel.getTime() < animationLength){
+        animationPanel.nextTime();
+        animationPanel.repaint();
+
+        try {
+          Thread.sleep((long) frameDelay);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+
+        continue;
+      }
+
+      if(reverse && animationPanel.getTime() < animationLength && animationPanel.getTime() > 0){
+        animationPanel.previousTime();
+        animationPanel.repaint();
+
+        try {
+          Thread.sleep((long) frameDelay);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        continue;
+      }
+
+      if(play && loop){
+        animationPanel.resetTime();
+        animationPanel.repaint();
+
+        try {
+          Thread.sleep((long) frameDelay);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        continue;
+      }
+
+      if(play && loop){
+        animationPanel.resetTime();
+        animationPanel.repaint();
+
+        try {
+          Thread.sleep((long) frameDelay);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        continue;
+      }
+
+      if(play && !loop){
+        this.pause();
+        continue;
+      }
+
     }
-
-
   }
+
 
   @Override
   public void setListener(ActionListener listener) {
@@ -82,36 +169,42 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
   @Override
   public void rewind() {
-
+    this.reverse = true;
+    this.play = false;
   }
 
   @Override
   public void pause() {
+    this.pause = true;
 
   }
 
   @Override
   public void play() {
-
+    this.play = true;
+    this.reverse = false;
   }
 
   @Override
   public void enableLoop() {
+    this.loop = true;
 
   }
 
   @Override
   public void disableLoop() {
+    this.loop = false;
 
   }
 
   @Override
   public void increaseSpeed() {
-
+      this.frameDelay = this.frameDelay * .9;
   }
 
   @Override
   public void decreaseSpeed() {
+    this.frameDelay = this.frameDelay * 1.1;
 
   }
 
@@ -119,7 +212,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
    * myPanel is just JPanel with overridden paintComponent method to correctly paint the shapes from
    *     the model.
    */
-  public class MyPanel extends JPanel {
+  private class MyPanel extends JPanel {
     int time = 0;
 
     /**
@@ -129,6 +222,19 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     public void nextTime() {
       this.time += 1;
       //if(time > myModel.)
+    }
+
+    public void previousTime() {
+      this.time -= 1;
+      //if(time > myModel.)
+    }
+
+    public void resetTime(){
+      this.time = 0;
+    }
+
+    public int getTime(){
+      return this.time;
     }
 
     @Override

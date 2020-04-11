@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.util.AnimationReader;
+import cs5004.animator.view.PlaybackAnimationView;
 import cs5004.animator.view.SvgAnimationView;
 import cs5004.animator.view.TextAnimationView;
 import cs5004.animator.view.VisualAnimationView;
@@ -97,6 +98,9 @@ public final class EasyAnimator {
           break;
         case "visual":
           VisualAnimationView visualView = new VisualAnimationView(model, speed);
+          break;
+        case "playback":
+          PlaybackAnimationView playbackView = new PlaybackAnimationView(model, speed);
           break;
         default:
           JOptionPane.showMessageDialog(null, "Invalid view selected, " +

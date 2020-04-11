@@ -19,8 +19,8 @@ public class Controller implements ActionListener, KeyListener {
     this.view = view;
     this.model = model;
     view.setListener(this);
-
   }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {

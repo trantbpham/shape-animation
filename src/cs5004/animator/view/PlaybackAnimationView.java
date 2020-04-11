@@ -110,13 +110,13 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     //buttons
     JButton playButton = new JButton(PLAY);
     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), PLAY);
+    /*inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), PLAY);
     actionMap.put(PLAY, new AbstractAction() {
       @Override
       public void actionPerformed(ActionEvent e) {
         playButton.doClick();
       }
-    });
+    });*/
     playButton.addActionListener(controller);
     playButton.setActionCommand(playButton.getText());
     buttonPanel.add(playButton);

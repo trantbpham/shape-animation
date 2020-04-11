@@ -2,7 +2,7 @@
   <artifact type="jar" build-on-make="true" name="Assignment8:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Assignment8_jar</output-path>
     <root id="archive" name="Assignment8.jar">
-      <element id="module-output" name="Assignment8" />
+      <element id="module-output" name="Assignment 10" />
     </root>
   </artifact>
 </component>

@@ -5,15 +5,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import cs5004.animator.model.AnimationModel;
 import cs5004.animator.model.AnimationModelImpl;
+import cs5004.animator.view.MouseListenerForController;
 import cs5004.animator.view.PlaybackAnimationView;
 
 public class Controller implements ActionListener, KeyListener {
 
   private PlaybackAnimationView view;
   private AnimationModelImpl model;
-  private MouseListenerControl mouse;
+  private MouseListenerForController mouse;
 
   public Controller(PlaybackAnimationView view, AnimationModelImpl model) {
     this.view = view;

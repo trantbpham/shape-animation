@@ -1,21 +1,23 @@
 package cs5004.animator.view;
 
 //import java.awt.;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-//import javax.swing.*;
 import javax.swing.*;
 
 import cs5004.animator.control.Controller;
 import cs5004.animator.model.AnimationModelImpl;
 
+//import javax.swing.*;
+
 /**
- * This class creates the a visual animation view using JFrame, JPanel and Graphics2D objects.
- *     This view also supports panels which repaint themselves for every tick of the model.
- *     JPanel is extended to update the paint method and create the animation itself.
+ * This class creates the a visual animation view using JFrame, JPanel and Graphics2D objects. This
+ * view also supports panels which repaint themselves for every tick of the model. JPanel is
+ * extended to update the paint method and create the animation itself.
  */
-public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
+public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
   public static final String ENABLE_LOOP = "Enable Loop";
   public static final String PLAY = "Play";
@@ -24,8 +26,9 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
   public static final String DISABLE_LOOP = "Disable Loop";
   public static final String INCREASE_SPEED = "Increase Speed";
   public static final String DECREASE_SPEED = "Decrease Speed";
-  private JButton playButton, pauseButton, rewindButton,increaseSpeedButton,decreaseSpeedButton,enableLoopButton,
-                  disableLoopButton;
+  private JButton playButton, pauseButton, rewindButton, increaseSpeedButton,
+          decreaseSpeedButton, enableLoopButton,
+          disableLoopButton;
   private AnimationModelImpl myModel;
   private int leftBoundOffset;
   private int topBoundOffset;
@@ -38,7 +41,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
   /**
    * Constructor for VisualAnimationView, creates the JFrame and updates the animation
-   *     continuously.
+   * continuously.
    *
    * @param model - the model that this view pulls information to display from
    * @param speed - the speed of the animation
@@ -46,7 +49,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
   public PlaybackAnimationView(AnimationModelImpl model, int speed) {
     MyPanel animationPanel;
     int animationLength = model.getLongestLife();
-    frameDelay = 1000/speed;
+    frameDelay = 1000 / speed;
     loop = true;
     play = true;
     reverse = false;
@@ -76,7 +79,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
     //button panel
     JPanel buttonPanel = new JPanel();
-    buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
+    buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
     this.add(buttonPanel, BorderLayout.SOUTH);
 
     //Adding labels for instructions and information
@@ -147,12 +150,12 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     this.pack();
     this.setVisible(true);
 
-    while(true) {
-      if(this.pause){
+    while (true) {
+      if (this.pause) {
         continue;
       }
 
-      if(this.play && animationPanel.getTime() < animationLength){
+      if (this.play && animationPanel.getTime() < animationLength) {
         animationPanel.nextTime();
         animationPanel.repaint();
 
@@ -165,7 +168,8 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
         continue;
       }
 
-      if(this.reverse && animationPanel.getTime() < animationLength && animationPanel.getTime() > 0){
+      if (this.reverse && animationPanel.getTime() <
+              animationLength && animationPanel.getTime() > 0) {
         animationPanel.previousTime();
         animationPanel.repaint();
 
@@ -177,7 +181,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
         continue;
       }
 
-      if(this.play && this.loop){
+      if (this.play && this.loop) {
         animationPanel.resetTime();
         animationPanel.repaint();
 
@@ -189,7 +193,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
         continue;
       }
 
-      if(this.play && this.loop){
+      if (this.play && this.loop) {
         animationPanel.resetTime();
         animationPanel.repaint();
 
@@ -201,7 +205,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
         continue;
       }
 
-      if(this.play && !this.loop){
+      if (this.play && !this.loop) {
         this.pause();
         continue;
       }
@@ -245,7 +249,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
   @Override
   public void increaseSpeed() {
-      this.frameDelay = this.frameDelay * .9;
+    this.frameDelay = this.frameDelay * .9;
   }
 
   @Override
@@ -255,15 +259,15 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
   }
 
   /**
-   * myPanel is just JPanel with overridden paintComponent method to correctly paint the shapes from
-   *     the model.
+   * myPanel is just JPanel with overridden paintComponent method to correctly paint the
+   * shapes from  the model.
    */
   private class MyPanel extends JPanel {
     int time = 0;
 
     /**
      * nextTime is a public method to myPanel which will move the timer one tick forward. This gets
-     *     called in VisualAnimationView to move the animation forward.
+     * called in VisualAnimationView to move the animation forward.
      */
     public void nextTime() {
       this.time += 1;
@@ -275,11 +279,11 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
       //if(time > myModel.)
     }
 
-    public void resetTime(){
+    public void resetTime() {
       this.time = 0;
     }
 
-    public int getTime(){
+    public int getTime() {
       return this.time;
     }
 

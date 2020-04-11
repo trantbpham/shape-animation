@@ -29,6 +29,9 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
   private boolean reverse;
   private boolean pause;
   private JPanel buttonPanel;
+  private JPanel textPanel;
+  private JLabel textbox;
+
 
 
   /**
@@ -69,34 +72,65 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     scrollPane.setPreferredSize(new Dimension(myModel.getWidth(), myModel.getHeight()));
     this.add(scrollPane);
 
+    //Instruction and information panel
+    textPanel = new JPanel();
+    textPanel.setLayout(new FlowLayout());
+    this.add(textPanel, BorderLayout.SOUTH);
+    textbox = new JLabel("Here are the instructions");
+    textPanel.add(textbox);
+
     //button panel
     buttonPanel = new JPanel();
-    buttonPanel.setLayout(new FlowLayout());
+    buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
     this.add(buttonPanel, BorderLayout.SOUTH);
+
+    //Adding labels for instructions and information
+    textbox = new JLabel(" ");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
+    textbox = new JLabel("First Line of instructions");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
+    textbox = new JLabel("Second line of instructions");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
+    textbox = new JLabel("Third line of instructions");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
+    textbox = new JLabel(" ");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
 
     //buttons
     playButton = new JButton("Play");
+    playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(playButton);
 
     pauseButton = new JButton("Pause");
+    pauseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(pauseButton);
 
     rewindButton = new JButton("Rewind");
+    rewindButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(rewindButton);
 
     enableLoopButton = new JButton("Enable Loop");
+    enableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(enableLoopButton);
 
     disableLoopButton = new JButton("Disable Loop");
+    disableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(disableLoopButton);
 
     increaseSpeedButton = new JButton("Increase Speed");
+    increaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(increaseSpeedButton);
 
     decreaseSpeedButton = new JButton("Decrease Speed");
+    decreaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(decreaseSpeedButton);
 
-
+    this.pack();
     this.setVisible(true);
 
     while(true) {

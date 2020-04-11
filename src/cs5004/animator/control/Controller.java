@@ -33,18 +33,25 @@ public class Controller implements ActionListener, KeyListener {
     switch (e.getActionCommand()) {
       case PLAY:
         view.play();
+        break;
       case PAUSE:
         view.pause();
+        break;
       case REWIND:
         view.rewind();
+        break;
       case INCREASE_SPEED:
         view.increaseSpeed();
+        break;
       case DECREASE_SPEED:
         view.decreaseSpeed();
+        break;
       case ENABLE_LOOP:
         view.enableLoop();
+        break;
       case DISABLE_LOOP:
         view.disableLoop();
+        break;
     }
 
   }

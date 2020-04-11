@@ -26,17 +26,22 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   public static final String DISABLE_LOOP = "Disable Loop";
   public static final String INCREASE_SPEED = "Increase Speed";
   public static final String DECREASE_SPEED = "Decrease Speed";
+  /*
   private JButton playButton, pauseButton, rewindButton, increaseSpeedButton,
           decreaseSpeedButton, enableLoopButton,
           disableLoopButton;
+          */
+
   private AnimationModelImpl myModel;
   private int leftBoundOffset;
   private int topBoundOffset;
-  private boolean loop;
+  int animationLength;
   private double frameDelay;
+  private boolean loop;
   private boolean play;
   private boolean reverse;
   private boolean pause;
+
 
 
   /**
@@ -48,7 +53,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
    */
   public PlaybackAnimationView(AnimationModelImpl model, int speed) {
     MyPanel animationPanel;
-    int animationLength = model.getLongestLife();
+    animationLength = model.getLongestLife();
     frameDelay = 1000 / speed;
     loop = true;
     play = true;
@@ -122,7 +127,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     rewindButton.setActionCommand(rewindButton.getText());
     buttonPanel.add(rewindButton);
 
-    enableLoopButton = new JButton(ENABLE_LOOP);
+    JButton enableLoopButton = new JButton(ENABLE_LOOP);
     enableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     enableLoopButton.addActionListener(controller);
     //playButton.setMnemonic('E');
@@ -159,11 +164,12 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     this.setVisible(true);
 
     while (true) {
-      if (this.pause) {
-        continue;
-      }
+      System.out.println("this.play is " + this.play);
+      System.out.println("this.pause is " + this.pause);
+      System.out.println("this.reverse is " + this.reverse);
 
       if (this.play && animationPanel.getTime() < animationLength) {
+        System.out.println("if 1");
         animationPanel.nextTime();
         animationPanel.repaint();
 
@@ -176,8 +182,9 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
         continue;
       }
 
-      if (this.reverse && animationPanel.getTime() <
-              animationLength && animationPanel.getTime() > 0) {
+      if (this.reverse && animationPanel.getTime() <=
+              animationLength && animationPanel.getTime() > 0 && !this.pause) {
+        System.out.println("if 2: this.reverse is " + this.reverse);
         animationPanel.previousTime();
         animationPanel.repaint();
 
@@ -190,6 +197,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
       }
 
       if (this.play && this.loop) {
+        System.out.println("if 3");
         animationPanel.resetTime();
         animationPanel.repaint();
 
@@ -201,8 +209,9 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
         continue;
       }
 
-      if (this.play && this.loop) {
-        animationPanel.resetTime();
+      if (this.reverse && this.loop) {
+        System.out.println("if 3");
+        animationPanel.resetEndTime();
         animationPanel.repaint();
 
         try {
@@ -214,7 +223,18 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
       }
 
       if (this.play && !this.loop) {
+        System.out.println("if 5");
         this.pause();
+        continue;
+      }
+
+      if (this.pause) {
+        System.out.println("if 6");
+        try {
+          Thread.sleep((long) this.frameDelay);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
         continue;
       }
 
@@ -227,26 +247,28 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
   }
 
-  @Override
   public void rewind() {
     this.reverse = true;
     this.play = false;
+    this.pause = false;
   }
 
   @Override
   public void pause() {
     this.pause = true;
-
+    this.play = false;
   }
 
   @Override
   public void play() {
     this.play = true;
     this.reverse = false;
+    this.pause = false;
   }
 
   @Override
   public void enableLoop() {
+    this.play = true;
     this.loop = true;
   }
 
@@ -289,6 +311,10 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
     public void resetTime() {
       this.time = 0;
+    }
+
+    public void resetEndTime() {
+      this.time = animationLength;
     }
 
     public int getTime() {

@@ -6,14 +6,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import cs5004.animator.model.AnimationModelImpl;
-import cs5004.animator.view.MouseListenerForController;
 import cs5004.animator.view.PlaybackAnimationView;
+
+import static cs5004.animator.view.PlaybackAnimationView.ENABLE_LOOP;
 
 public class Controller implements ActionListener, KeyListener {
 
   private PlaybackAnimationView view;
   private AnimationModelImpl model;
-  private MouseListenerForController mouse;
+
 
   public Controller(PlaybackAnimationView view, AnimationModelImpl model) {
     this.view = view;
@@ -34,7 +35,7 @@ public class Controller implements ActionListener, KeyListener {
         view.increaseSpeed();
       case "Decrease Speed Button":
         view.decreaseSpeed();
-      case "Loop Enabler Button":
+      case ENABLE_LOOP:
         view.enableLoop();
       case "Loop Disabler Button":
         view.disableLoop();

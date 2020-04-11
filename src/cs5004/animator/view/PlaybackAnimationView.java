@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 //import javax.swing.*;
 import javax.swing.*;
 
+import cs5004.animator.control.Controller;
 import cs5004.animator.model.AnimationModelImpl;
 
 /**
@@ -16,6 +17,9 @@ import cs5004.animator.model.AnimationModelImpl;
  */
 public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
+  public static final String ENABLE_LOOP = "Enable Loop";
+  private JButton playButton, pauseButton, rewindButton,increaseSpeedButton,decreaseSpeedButton,enableLoopButton,
+                  disableLoopButton;
   private AnimationModelImpl myModel;
   private int leftBoundOffset;
   private int topBoundOffset;
@@ -41,7 +45,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     play = true;
     reverse = false;
     pause = false;
-
+    Controller controller = new Controller(this, model);
     this.myModel = model;
 
     leftBoundOffset = myModel.getLeftBound();
@@ -99,8 +103,10 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     rewindButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(rewindButton);
 
-    JButton enableLoopButton = new JButton("Enable Loop");
+    enableLoopButton = new JButton("Enable Loop");
     enableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    enableLoopButton.addActionListener(controller);
+    enableLoopButton.setActionCommand(enableLoopButton.getText());
     buttonPanel.add(enableLoopButton);
 
     JButton disableLoopButton = new JButton("Disable Loop");

@@ -18,6 +18,12 @@ import cs5004.animator.model.AnimationModelImpl;
 public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
   public static final String ENABLE_LOOP = "Enable Loop";
+  public static final String PLAY = "Play";
+  public static final String PAUSE = "Pause";
+  public static final String REWIND = "Rewind";
+  public static final String DISABLE_LOOP = "Disable Loop";
+  public static final String INCREASE_SPEED = "Increase Speed";
+  public static final String DECREASE_SPEED = "Decrease Speed";
   private JButton playButton, pauseButton, rewindButton,increaseSpeedButton,decreaseSpeedButton,enableLoopButton,
                   disableLoopButton;
   private AnimationModelImpl myModel;
@@ -91,34 +97,46 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     buttonPanel.add(textbox);
 
     //buttons
-    JButton playButton = new JButton("Play");
+    JButton playButton = new JButton(PLAY);
     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    playButton.addActionListener(controller);
+    playButton.setActionCommand(playButton.getText());
     buttonPanel.add(playButton);
 
-    JButton pauseButton = new JButton("Pause");
+    JButton pauseButton = new JButton(PAUSE);
     pauseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    pauseButton.addActionListener(controller);
+    pauseButton.setActionCommand(pauseButton.getText());
     buttonPanel.add(pauseButton);
 
-    JButton rewindButton = new JButton("Rewind");
+    JButton rewindButton = new JButton(REWIND);
     rewindButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    rewindButton.addActionListener(controller);
+    rewindButton.setActionCommand(rewindButton.getText());
     buttonPanel.add(rewindButton);
 
-    enableLoopButton = new JButton("Enable Loop");
+    enableLoopButton = new JButton(ENABLE_LOOP);
     enableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     enableLoopButton.addActionListener(controller);
     enableLoopButton.setActionCommand(enableLoopButton.getText());
     buttonPanel.add(enableLoopButton);
 
-    JButton disableLoopButton = new JButton("Disable Loop");
+    JButton disableLoopButton = new JButton(DISABLE_LOOP);
     disableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    disableLoopButton.addActionListener(controller);
+    disableLoopButton.setActionCommand(disableLoopButton.getText());
     buttonPanel.add(disableLoopButton);
 
-    JButton increaseSpeedButton = new JButton("Increase Speed");
+    JButton increaseSpeedButton = new JButton(INCREASE_SPEED);
     increaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    increaseSpeedButton.addActionListener(controller);
+    increaseSpeedButton.setActionCommand(increaseSpeedButton.getText());
     buttonPanel.add(increaseSpeedButton);
 
-    JButton decreaseSpeedButton = new JButton("Decrease Speed");
+    JButton decreaseSpeedButton = new JButton(DECREASE_SPEED);
     decreaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    decreaseSpeedButton.addActionListener(controller);
+    decreaseSpeedButton.setActionCommand(decreaseSpeedButton.getText());
     buttonPanel.add(decreaseSpeedButton);
 
     //Spacer at the bottom of the button panel

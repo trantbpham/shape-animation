@@ -8,7 +8,13 @@ import java.awt.event.KeyListener;
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.view.PlaybackAnimationView;
 
+import static cs5004.animator.view.PlaybackAnimationView.DECREASE_SPEED;
+import static cs5004.animator.view.PlaybackAnimationView.DISABLE_LOOP;
 import static cs5004.animator.view.PlaybackAnimationView.ENABLE_LOOP;
+import static cs5004.animator.view.PlaybackAnimationView.INCREASE_SPEED;
+import static cs5004.animator.view.PlaybackAnimationView.PAUSE;
+import static cs5004.animator.view.PlaybackAnimationView.PLAY;
+import static cs5004.animator.view.PlaybackAnimationView.REWIND;
 
 public class Controller implements ActionListener, KeyListener {
 
@@ -25,19 +31,19 @@ public class Controller implements ActionListener, KeyListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
-      case "Play Button":
+      case PLAY:
         view.play();
-      case "Pause Button":
+      case PAUSE:
         view.pause();
-      case "Rewind Button":
+      case REWIND:
         view.rewind();
-      case "Increase Speed Button":
+      case INCREASE_SPEED:
         view.increaseSpeed();
-      case "Decrease Speed Button":
+      case DECREASE_SPEED:
         view.decreaseSpeed();
       case ENABLE_LOOP:
         view.enableLoop();
-      case "Loop Disabler Button":
+      case DISABLE_LOOP:
         view.disableLoop();
     }
 

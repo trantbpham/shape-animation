@@ -104,13 +104,13 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     playButton.addActionListener(controller);
     playButton.setActionCommand(playButton.getText());
-    //playButton.setMnemonic('S');
+    playButton.setMnemonic('S');
     buttonPanel.add(playButton);
 
     JButton pauseButton = new JButton(PAUSE);
     pauseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     pauseButton.addActionListener(controller);
-    //playButton.setMnemonic('P');
+    playButton.setMnemonic('P');
     pauseButton.setActionCommand(pauseButton.getText());
 
     buttonPanel.add(pauseButton);
@@ -118,7 +118,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     JButton rewindButton = new JButton(REWIND);
     rewindButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     rewindButton.addActionListener(controller);
-    //playButton.setMnemonic('W');
+    playButton.setMnemonic('W');
     rewindButton.setActionCommand(rewindButton.getText());
     buttonPanel.add(rewindButton);
 

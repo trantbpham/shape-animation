@@ -16,22 +16,14 @@ import cs5004.animator.model.AnimationModelImpl;
  */
 public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
 
-  private JButton playButton, pauseButton, rewindButton,increaseSpeedButton,decreaseSpeedButton,enableLoopButton,
-                  disableLoopButton;
   private AnimationModelImpl myModel;
   private int leftBoundOffset;
   private int topBoundOffset;
   private boolean loop;
-  private Timer timer;
   private double frameDelay;
-  private int animationLength;
   private boolean play;
   private boolean reverse;
   private boolean pause;
-  private JPanel buttonPanel;
-  private JPanel textPanel;
-  private JLabel textbox;
-
 
 
   /**
@@ -42,10 +34,10 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
    * @param speed - the speed of the animation
    */
   public PlaybackAnimationView(AnimationModelImpl model, int speed) {
-    frameDelay = 1000/speed;
     MyPanel animationPanel;
+    int animationLength = model.getLongestLife();
+    frameDelay = 1000/speed;
     loop = true;
-    animationLength = model.getLongestLife();
     play = true;
     reverse = false;
     pause = false;
@@ -72,20 +64,13 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     scrollPane.setPreferredSize(new Dimension(myModel.getWidth(), myModel.getHeight()));
     this.add(scrollPane);
 
-    //Instruction and information panel
-    textPanel = new JPanel();
-    textPanel.setLayout(new FlowLayout());
-    this.add(textPanel, BorderLayout.SOUTH);
-    textbox = new JLabel("Here are the instructions");
-    textPanel.add(textbox);
-
     //button panel
-    buttonPanel = new JPanel();
+    JPanel buttonPanel = new JPanel();
     buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
     this.add(buttonPanel, BorderLayout.SOUTH);
 
     //Adding labels for instructions and information
-    textbox = new JLabel(" ");
+    JLabel textbox = new JLabel(" ");
     textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(textbox);
     textbox = new JLabel("First Line of instructions");
@@ -102,48 +87,53 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
     buttonPanel.add(textbox);
 
     //buttons
-    playButton = new JButton("Play");
+    JButton playButton = new JButton("Play");
     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(playButton);
 
-    pauseButton = new JButton("Pause");
+    JButton pauseButton = new JButton("Pause");
     pauseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(pauseButton);
 
-    rewindButton = new JButton("Rewind");
+    JButton rewindButton = new JButton("Rewind");
     rewindButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(rewindButton);
 
-    enableLoopButton = new JButton("Enable Loop");
+    JButton enableLoopButton = new JButton("Enable Loop");
     enableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(enableLoopButton);
 
-    disableLoopButton = new JButton("Disable Loop");
+    JButton disableLoopButton = new JButton("Disable Loop");
     disableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(disableLoopButton);
 
-    increaseSpeedButton = new JButton("Increase Speed");
+    JButton increaseSpeedButton = new JButton("Increase Speed");
     increaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(increaseSpeedButton);
 
-    decreaseSpeedButton = new JButton("Decrease Speed");
+    JButton decreaseSpeedButton = new JButton("Decrease Speed");
     decreaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(decreaseSpeedButton);
+
+    //Spacer at the bottom of the button panel
+    textbox = new JLabel(" ");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
 
     this.pack();
     this.setVisible(true);
 
     while(true) {
-      if(pause){
+      if(this.pause){
         continue;
       }
 
-      if(play && animationPanel.getTime() < animationLength){
+      if(this.play && animationPanel.getTime() < animationLength){
         animationPanel.nextTime();
         animationPanel.repaint();
 
         try {
-          Thread.sleep((long) frameDelay);
+          Thread.sleep((long) this.frameDelay);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
@@ -151,19 +141,19 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
         continue;
       }
 
-      if(reverse && animationPanel.getTime() < animationLength && animationPanel.getTime() > 0){
+      if(this.reverse && animationPanel.getTime() < animationLength && animationPanel.getTime() > 0){
         animationPanel.previousTime();
         animationPanel.repaint();
 
         try {
-          Thread.sleep((long) frameDelay);
+          Thread.sleep((long) this.frameDelay);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
         continue;
       }
 
-      if(play && loop){
+      if(this.play && this.loop){
         animationPanel.resetTime();
         animationPanel.repaint();
 
@@ -175,7 +165,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
         continue;
       }
 
-      if(play && loop){
+      if(this.play && this.loop){
         animationPanel.resetTime();
         animationPanel.repaint();
 
@@ -187,7 +177,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
         continue;
       }
 
-      if(play && !loop){
+      if(this.play && !this.loop){
         this.pause();
         continue;
       }
@@ -222,13 +212,11 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface{
   @Override
   public void enableLoop() {
     this.loop = true;
-
   }
 
   @Override
   public void disableLoop() {
     this.loop = false;
-
   }
 
   @Override

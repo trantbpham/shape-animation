@@ -24,7 +24,6 @@ public class Controller implements ActionListener, KeyListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
-
       case "Play Button":
         view.play();
       case "Pause Button":

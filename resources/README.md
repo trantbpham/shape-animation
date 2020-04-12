@@ -121,3 +121,10 @@ The application control consist of:
 
 
 
+=====================================================================
+View Updates:
+Modify the SVG View to have it works better than previous assignment. 
+From assignment 8, the shapes were jumping around due to the incorrect 
+script. Updated SVG view sorts the shape in order in XML, as well as 
+printing movements of the shape even when it's not moving. This fix the
+issue of shapes jumping around. 

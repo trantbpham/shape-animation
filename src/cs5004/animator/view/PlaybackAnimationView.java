@@ -110,13 +110,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     //buttons
     JButton playButton = new JButton(PLAY);
     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    /*inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), PLAY);
-    actionMap.put(PLAY, new AbstractAction() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        playButton.doClick();
-      }
-    });*/
     playButton.addActionListener(controller);
     playButton.setActionCommand(playButton.getText());
     buttonPanel.add(playButton);
@@ -124,7 +117,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     JButton pauseButton = new JButton(PAUSE);
     pauseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     pauseButton.addActionListener(controller);
-    playButton.setMnemonic('P');
     pauseButton.setActionCommand(pauseButton.getText());
 
     buttonPanel.add(pauseButton);
@@ -132,35 +124,30 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     JButton rewindButton = new JButton(REWIND);
     rewindButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     rewindButton.addActionListener(controller);
-    playButton.setMnemonic('W');
     rewindButton.setActionCommand(rewindButton.getText());
     buttonPanel.add(rewindButton);
 
     JButton enableLoopButton = new JButton(ENABLE_LOOP);
     enableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     enableLoopButton.addActionListener(controller);
-    //playButton.setMnemonic('E');
     enableLoopButton.setActionCommand(enableLoopButton.getText());
     buttonPanel.add(enableLoopButton);
 
     JButton disableLoopButton = new JButton(DISABLE_LOOP);
     disableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     disableLoopButton.addActionListener(controller);
-    //playButton.setMnemonic('D');
     disableLoopButton.setActionCommand(disableLoopButton.getText());
     buttonPanel.add(disableLoopButton);
 
     JButton increaseSpeedButton = new JButton(INCREASE_SPEED);
     increaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     increaseSpeedButton.addActionListener(controller);
-    //playButton.setMnemonic('I');
     increaseSpeedButton.setActionCommand(increaseSpeedButton.getText());
     buttonPanel.add(increaseSpeedButton);
 
     JButton decreaseSpeedButton = new JButton(DECREASE_SPEED);
     decreaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     decreaseSpeedButton.addActionListener(controller);
-    //playButton.setMnemonic('K');
     decreaseSpeedButton.setActionCommand(decreaseSpeedButton.getText());
     buttonPanel.add(decreaseSpeedButton);
 

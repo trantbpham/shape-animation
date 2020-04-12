@@ -16,7 +16,7 @@ import static cs5004.animator.view.PlaybackAnimationView.PAUSE;
 import static cs5004.animator.view.PlaybackAnimationView.PLAY;
 import static cs5004.animator.view.PlaybackAnimationView.REWIND;
 
-public class Controller implements ActionListener, KeyListener {
+public class Controller implements ActionListener {
 
   private PlaybackAnimationView view;
   private AnimationModelImpl model;
@@ -56,34 +56,4 @@ public class Controller implements ActionListener, KeyListener {
 
   }
 
-
-  @Override
-  public void keyTyped(KeyEvent e) {
-
-  }
-
-  @Override
-  public void keyPressed(KeyEvent e) {
-    switch (e.getKeyChar()) {
-      case 'S':
-        view.play();
-      case 'P':
-        view.pause();
-      case 'R':
-        view.rewind();
-      case 'I':
-        view.increaseSpeed();
-      case 'D':
-        view.decreaseSpeed();
-      case 'E':
-        view.enableLoop();
-      case 'K':
-        view.disableLoop();
-    }
-  }
-
-  @Override
-  public void keyReleased(KeyEvent e) {
-   keyPressed(e);
-  }
 }

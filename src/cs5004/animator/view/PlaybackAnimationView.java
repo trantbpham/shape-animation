@@ -9,7 +9,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-import javax.swing.*;
+//import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.BoxLayout;
 
 import cs5004.animator.control.Controller;
 import cs5004.animator.model.AnimationModelImpl;
@@ -42,8 +49,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   private boolean reverse;
   private boolean pause;
   private MyPanel animationPanel;
-
-  private JTextField deleteField;
 
   /**
    * Constructor for PlaybackAnimationView, creates the JFrame, animation panel, Jbuttons, and

@@ -148,17 +148,19 @@ public class AnimationModelImpl implements AnimationModel {
     if (!shapes.containsKey(name)) {
       throw new IllegalArgumentException("Shape doesn't exist");
     }
-    shapes.remove(name);
+    shapes.remove(name, shapes.get(name));
 
     for (String each : animationHistory) {
       if (each.equals(name)) {
-        animationHistory.remove(name);
+//        animationHistory.remove(shapes.get(name).getShapeCreateCaption());
+        animationHistory.add(shapes.get(name).removeShapeCaption());
+        animationHistory.remove(shapes.get(name));
       }
     }
 
     for (String each : orderedKeys) {
       if (each.equals(name)) {
-        orderedKeys.remove(name);
+        orderedKeys.remove(shapes.get(name));
       }
     }
   }
@@ -298,6 +300,19 @@ public class AnimationModelImpl implements AnimationModel {
     return parameterOutput;
   }
 
+  public StringBuilder getShapesNamInAnimation() {
+    StringBuilder returnString = new StringBuilder("");
+    if (shapes.isEmpty()) {
+      return returnString.append("shape not found");
+    }
+    Iterator<String> iter = animationHistory.iterator();
+    for (String each : shapes.keySet()) {
+      returnString.append(each);
+        returnString.append(", ");
+    }
+    returnString.setLength(returnString.length() - 2);
+    return returnString;
+  }
   @Override
   public String toString() {
 

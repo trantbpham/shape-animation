@@ -136,6 +136,12 @@ public interface AnimationModel {
   String getTextAnimation() throws IllegalArgumentException;
 
   /**
+   * Return a string list of the shape name in the animation model.
+   * @return string builder with animation shapes' names
+   */
+  StringBuilder getShapesNamInAnimation();
+
+  /**
    * Using the shape's key to remove its key & value from all the lists and hash map in this model.
    *
    * @param name take in a String for shape name's

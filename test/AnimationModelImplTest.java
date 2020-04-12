@@ -389,5 +389,28 @@ public class AnimationModelImplTest {
 
   }
 
+  /**
+   * Testing if shape is removed properly from the animation. 
+   */
+  @Test
+  public void testRemoveShape() {
+    testAnimationModel.addShape("testRectangle", "rectangle",
+            10, 10, 5, 5, .5,
+            .5, .5, 3, 10);
+    testAnimationModel.addShape("testEllipse", "ellipse",
+            10, 10, 5, 5, .5,
+            .5, .5, 3, 10);
+    System.out.print("\nbefore remove\n");
+    System.out.print(testAnimationModel.getShapesNamInAnimation().toString() + "\n");
+    assertEquals("testEllipse, testRectangle",
+            testAnimationModel.getShapesNamInAnimation().toString());
 
+    testAnimationModel.removeShape("testRectangle");
+    System.out.print("\nafter remove\n");
+    System.out.print(testAnimationModel.getShapesNamInAnimation().toString() + "\n");
+    assertEquals("testEllipse", testAnimationModel.getShapesNamInAnimation().toString());
+
+
+
+  }
 }

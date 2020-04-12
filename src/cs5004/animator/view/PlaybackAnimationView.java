@@ -1,18 +1,13 @@
 package cs5004.animator.view;
 
-//import java.awt.;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 import javax.swing.*;
-import cs5004.animator.model.AbstractShape;
+
 import cs5004.animator.control.Controller;
 import cs5004.animator.model.AnimationModelImpl;
 
-//import javax.swing.*;
 
 /**
  * This class creates the a visual animation view using JFrame, JPanel and Graphics2D objects. This
@@ -29,11 +24,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   public static final String INCREASE_SPEED = "Increase Speed";
   public static final String DECREASE_SPEED = "Decrease Speed";
   public static final String DELETE_SHAPE = "Remove Shape";
-  /*
-  private JButton playButton, pauseButton, rewindButton, increaseSpeedButton,
-          decreaseSpeedButton, enableLoopButton,
-          disableLoopButton;
-          */
+
 
   private AnimationModelImpl myModel;
   private int leftBoundOffset;
@@ -50,8 +41,8 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
   /**
    * Constructor for PlaybackAnimationView, creates the JFrame, animation panel, Jbuttons, and
-   *     labels for the user interface. Also connects the controller to this view so the
-   *     controller can send commands to this view.
+   * labels for the user interface. Also connects the controller to this view so the controller can
+   * send commands to this view.
    *
    * @param model - the model that this view pulls information to display from
    * @param speed - the speed of the animation
@@ -186,6 +177,13 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
   }
 
+  @Override
+  public void popupErrorMessageDialogue() {
+    JFrame errorPopUp = new JFrame();
+    JOptionPane.showMessageDialog(errorPopUp, "Shape not found");
+  }
+
+  @Override
   public String addJDialogue() {
     JFrame dialogueFrame = new JFrame();
     String name = JOptionPane.showInputDialog("Enter shape name:");
@@ -330,21 +328,18 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
   }
 
-  public void deleteShape( String name) {
-    this.myModel.removeShape(name);
-  }
 
   /**
    * myPanel is a JPanel with overridden paintComponent method to correctly paint the shapes from
-   *     the model. It also contains the 'time' variable, which behaves as the frame of the
-   *     animation. The panel also contains methods to move the frame forward, backwards, or reset.
+   * the model. It also contains the 'time' variable, which behaves as the frame of the animation.
+   * The panel also contains methods to move the frame forward, backwards, or reset.
    */
   class MyPanel extends JPanel {
     int time = 0;
 
     /**
      * nextTime is a public method to myPanel which will move the timer one tick forward. This gets
-     *     called in PlaybackAnimationView to move the animation forward.
+     * called in PlaybackAnimationView to move the animation forward.
      */
     public void nextTime() {
       this.time += 1;
@@ -352,8 +347,8 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     }
 
     /**
-     * previousTime is a public method to myPanel which will move the timer one tick backward. This gets
-     *     called in PlaybackAnimationView to move the animation in reverse.
+     * previousTime is a public method to myPanel which will move the timer one tick backward. This
+     * gets called in PlaybackAnimationView to move the animation in reverse.
      */
     public void previousTime() {
       this.time -= 1;
@@ -361,16 +356,16 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
     /**
      * resetTime is a public method to myPanel which will reset the local time variable, thus
-     *     beginning the animation on the first frame again for the purpose of looping.
+     * beginning the animation on the first frame again for the purpose of looping.
      */
     public void resetTime() {
       this.time = 0;
     }
 
     /**
-     * resetEndTime is a public method to myPanel which will reset the local time variable to the last
-     *     frame of the animation, thus beginning the animation on the last frame again for the
-     *     purpose of looping in reverse.
+     * resetEndTime is a public method to myPanel which will reset the local time variable to the
+     * last frame of the animation, thus beginning the animation on the last frame again for the
+     * purpose of looping in reverse.
      */
     public void resetEndTime() {
       this.time = animationLength;
@@ -378,7 +373,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
     /**
      * Getter method to return the time variable of myPanel.
-     *
+     * <p>
      * return - int; the value of myPanel's internal time variable.
      */
     public int getTime() {

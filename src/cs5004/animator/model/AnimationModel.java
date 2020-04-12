@@ -135,4 +135,11 @@ public interface AnimationModel {
    */
   String getTextAnimation() throws IllegalArgumentException;
 
+  /**
+   * Using the shape's key to remove its key & value from all the lists and hash map in this model.
+   *
+   * @param name take in a String for shape name's
+   * @throws IllegalArgumentException if shape key doesn't exist in lists and hash map.
+   */
+  void removeShape(String name) throws IllegalArgumentException;
 }

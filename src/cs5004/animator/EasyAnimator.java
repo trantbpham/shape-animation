@@ -103,7 +103,7 @@ public final class EasyAnimator {
         case "playback":
           PlaybackAnimationView playbackView = new PlaybackAnimationView(model, speed);
           Controller controller = new Controller(playbackView,model);
-          controller.go();
+          controller.goAnimation();
           break;
         default:
           JOptionPane.showMessageDialog(null, "Invalid view selected, " +

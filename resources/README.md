@@ -78,6 +78,16 @@ The application views consist of:
     Abstract Shape class, and retrieve the data to print from those lists in shape. 
     SVGAnimation takes in the AnimationModel as its field, and from there store the shapes 
     in form of hashmap, loop through each shape to get the data.
+    
+The application control consist of:
+    * Controller - this class contains two methods: goAnimation and actionPerformed:
+        - goAnimation: begins running the animation by starting a while(true) loop which 
+        checks the state of the various internal values for play, pause, rewind etc. and 
+        determines how to behave. Also maintains an internal timer using the sleep method.
+        - actionPerformed: is where the JButtons are controlled from the view. Anytime
+        there is an action clicked, the controller will access the action and will call 
+        the view action from JButton accordingly.  
+        
 
 ================== MODEL UPDATES ================================
 

@@ -90,7 +90,7 @@ public class SvgViewTest {
             "attributeName=\"y\" from=\"50.0\" to=\"210.0\" fill=\"freeze\" />\n" +
             "</rect>\n" +
             "\n" +
-            "</svg>", sgvView.printSGV().toString());
+            "</svg>", sgvView.printScript().toString());
 
   }
 

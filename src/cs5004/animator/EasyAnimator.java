@@ -92,10 +92,10 @@ public final class EasyAnimator {
           break;
         case "svg":
           SvgAnimationView svgView = new SvgAnimationView(model, speed);
-          System.out.print(svgView.printSGV());
+          System.out.print(svgView.printScript());
           File outputFileSGV = new File(outFile);
           outputStream = new FileWriter(outputFileSGV);
-          outputStream.write(svgView.printSGV().toString());
+          outputStream.write(svgView.printScript().toString());
           break;
         case "visual":
           VisualAnimationView visualView = new VisualAnimationView(model, speed);

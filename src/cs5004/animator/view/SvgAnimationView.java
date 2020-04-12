@@ -1,6 +1,5 @@
 package cs5004.animator.view;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,7 +13,7 @@ import cs5004.animator.model.ShapeType;
  * SVG view of the animation model. Main will be using printSVG function to generate the SVG content
  * for the file.
  */
-public class SvgAnimationView {
+public class SvgAnimationView implements ScriptView {
   private AnimationModelImpl animationModel;
   private AbstractShape shape;
   private double timescale;
@@ -34,10 +33,8 @@ public class SvgAnimationView {
     timescale = 1000 / (double) speed;
   }
 
-  /**
-   * Use string builder to create SVG file by accessing the hashmap of the shapes and get its info.
-   */
-  public StringBuilder printSGV() {
+  @Override
+  public StringBuilder printScript() {
     HashMap<String, AbstractShape> map = animationModel.getShape();
     List<String> keyList = new ArrayList<String>(map.keySet());
     Collections.sort(keyList);
@@ -66,7 +63,8 @@ public class SvgAnimationView {
         returnString.append("y=\"" + currentShape.getY(0) + "\" ");
         returnString.append("width=\"" + currentShape.getWidth(0) + "\" ");
         returnString.append("height=\"" + currentShape.getHeight(0) + "\" ");
-        returnString.append("fill=\"" + colorConvert(currentShape.getColor(0)) + "\" ");
+        returnString.append("fill=\"" +
+                ScriptView.colorConvert(currentShape.getColor(0)) + "\" ");
         returnString.append("visibility=\"visible\" >\n\n");
 
       }
@@ -78,60 +76,61 @@ public class SvgAnimationView {
         returnString.append("cy=\"" + currentShape.getY(0) + "\" ");
         returnString.append("rx=\"" + currentShape.getWidth(0) + "\" ");
         returnString.append("ry=\"" + currentShape.getHeight(0) + "\" ");
-        returnString.append("fill=\"" + colorConvert(currentShape.getColor(0)) + "\" ");
+        returnString.append("fill=\"" +
+                ScriptView.colorConvert(currentShape.getColor(0)) + "\" ");
         returnString.append("visibility=\"visible\" >\n\n");
       }
 
       for (int i = 0; i < currentShape.getFromXDestinationSize(); i++) {
-          returnString.append("        <animate attributeType=\"xml\" ");
-          returnString.append("begin=\""
-                  + currentShape.getMotionMoveStartTime(i) * timescale + "ms\" ");
-          returnString.append("dur=\""
-                  + currentShape.getMotionMoveEndTime(i) * timescale + "ms\" ");
-          returnString.append("attributeName=\"x\" ");
-          returnString.append("from=\"" + currentShape.getFromXDestination(i) + "\" ");
-          returnString.append("to=\"" + currentShape.getMoveXDestination(i) + "\" ");
-          returnString.append("fill=\"freeze\" />\n");
+        returnString.append("        <animate attributeType=\"xml\" ");
+        returnString.append("begin=\""
+                + currentShape.getMotionMoveStartTime(i) * timescale + "ms\" ");
+        returnString.append("dur=\""
+                + currentShape.getMotionMoveEndTime(i) * timescale + "ms\" ");
+        returnString.append("attributeName=\"x\" ");
+        returnString.append("from=\"" + currentShape.getFromXDestination(i) + "\" ");
+        returnString.append("to=\"" + currentShape.getMoveXDestination(i) + "\" ");
+        returnString.append("fill=\"freeze\" />\n");
 
       }
 
       for (int j = 0; j < currentShape.getMoveYDestinationSize(); j++) {
-          returnString.append("        <animate attributeType=\"xml\" ");
-          returnString.append("begin=\""
-                  + currentShape.getMotionMoveStartTime(j) * timescale + "ms\" ");
-          returnString.append("dur=\""
-                  + currentShape.getMotionMoveEndTime(j) * timescale + "ms\" ");
-          returnString.append("attributeName=\"y\" ");
-          returnString.append("from=\"" + currentShape.getFromYDestination(j) + "\" ");
-          returnString.append("to=\"" + currentShape.getMoveYDestination(j) + "\" ");
-          returnString.append("fill=\"freeze\" />\n");
-        }
+        returnString.append("        <animate attributeType=\"xml\" ");
+        returnString.append("begin=\""
+                + currentShape.getMotionMoveStartTime(j) * timescale + "ms\" ");
+        returnString.append("dur=\""
+                + currentShape.getMotionMoveEndTime(j) * timescale + "ms\" ");
+        returnString.append("attributeName=\"y\" ");
+        returnString.append("from=\"" + currentShape.getFromYDestination(j) + "\" ");
+        returnString.append("to=\"" + currentShape.getMoveYDestination(j) + "\" ");
+        returnString.append("fill=\"freeze\" />\n");
+      }
 
       for (int k = 0; k < currentShape.getWidthDestinationSize(); k++) {
-          System.out.println(currentShape.getMotionResizeStartTime(0));
-          returnString.append("        <animate attributeType=\"xml\" ");
-          returnString.append("begin=\""
-                  + currentShape.getMotionResizeStartTime(k) * timescale + "ms\" ");
-          returnString.append("dur=\""
-                  + currentShape.getMotionResizeEndtime(k) * timescale + "ms\" ");
-          returnString.append("attributeName=\"width\" ");
-          returnString.append("from=\"" + currentShape.getFromWidthDestination(k) + "\" ");
-          returnString.append("to=\"" + currentShape.getWidthDestination(k) + "\" ");
-          returnString.append("fill=\"freeze\" />\n");
-        }
+        System.out.println(currentShape.getMotionResizeStartTime(0));
+        returnString.append("        <animate attributeType=\"xml\" ");
+        returnString.append("begin=\""
+                + currentShape.getMotionResizeStartTime(k) * timescale + "ms\" ");
+        returnString.append("dur=\""
+                + currentShape.getMotionResizeEndtime(k) * timescale + "ms\" ");
+        returnString.append("attributeName=\"width\" ");
+        returnString.append("from=\"" + currentShape.getFromWidthDestination(k) + "\" ");
+        returnString.append("to=\"" + currentShape.getWidthDestination(k) + "\" ");
+        returnString.append("fill=\"freeze\" />\n");
+      }
 
       for (int l = 0; l < currentShape.getHeightDestinationSize(); l++) {
 
-          returnString.append("        <animate attributeType=\"xml\" ");
-          returnString.append("begin=\""
-                  + currentShape.getMotionResizeStartTime(l) * timescale + "ms\" ");
-          returnString.append("dur=\""
-                  + currentShape.getMotionResizeEndtime(l) * timescale + "ms\" ");
-          returnString.append("attributeName=\"height\" ");
-          returnString.append("from=\"" + currentShape.getFromHeightDestination(l) + "\" ");
-          returnString.append("to=\"" + currentShape.getHeightDestination(l) + "\" ");
-          returnString.append("fill=\"freeze\" />\n");
-        }
+        returnString.append("        <animate attributeType=\"xml\" ");
+        returnString.append("begin=\""
+                + currentShape.getMotionResizeStartTime(l) * timescale + "ms\" ");
+        returnString.append("dur=\""
+                + currentShape.getMotionResizeEndtime(l) * timescale + "ms\" ");
+        returnString.append("attributeName=\"height\" ");
+        returnString.append("from=\"" + currentShape.getFromHeightDestination(l) + "\" ");
+        returnString.append("to=\"" + currentShape.getHeightDestination(l) + "\" ");
+        returnString.append("fill=\"freeze\" />\n");
+      }
 
       for (int m = 0; m < currentShape.getColorSize(); m++) {
         if (((currentShape.getFromRColor(m) < currentShape.getRColorDestination(m))
@@ -162,15 +161,6 @@ public class SvgAnimationView {
 
     returnString.append("</svg>");
     return returnString;
-  }
-
-  /**
-   * Convert color class to proper SVG color format string.
-   */
-  private String colorConvert(Color color) {
-    String convertedString = "rgb(" + color.getRed() + "," + color.getGreen() + ","
-            + color.getBlue() + ")";
-    return convertedString;
   }
 
 }

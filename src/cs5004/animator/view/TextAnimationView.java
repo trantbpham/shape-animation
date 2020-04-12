@@ -1,6 +1,5 @@
 package cs5004.animator.view;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +11,7 @@ import cs5004.animator.model.ShapeType;
  * Text view of the animation model. Main will be using animationHistoryToString function to
  * generate the text content for the file.
  */
-public class TextAnimationView {
+public class TextAnimationView implements ScriptView {
   private AnimationModelImpl animationModel;
   private AbstractShape shape;
 
@@ -33,10 +32,8 @@ public class TextAnimationView {
   }
 
 
-  /**
-   * Use string builder to create text file by accessing the hashmap of the shapes and get its info.
-   */
-  public StringBuilder animationHistoryToString() {
+  @Override
+  public StringBuilder printScript() {
 
     HashMap<String, AbstractShape> map = animationModel.getShape();
     ArrayList<AbstractShape> shapeList = new ArrayList<>();
@@ -47,9 +44,10 @@ public class TextAnimationView {
     StringBuilder returnString = new StringBuilder("");
 
     for (AbstractShape currentShape : shapeList) {
-      if (currentShape.getShapeType() == ShapeType.Rectangle) {
+      if (currentShape.getShapeType
+              () == ShapeType.Rectangle) {
         returnString.append("Create rectangle " + currentShape.getName() + " with color "
-                + colorConvert(currentShape.getColor(0))
+                + ScriptView.colorConvert(currentShape.getColor(0))
                 + " and corner at (" + currentShape.getX(0) + ", "
                 + currentShape.getY(0) + "), width: "
                 + currentShape.getWidth(0) + " and height: "
@@ -59,7 +57,7 @@ public class TextAnimationView {
       if (currentShape.getShapeType() == ShapeType.Ellipse) {
         returnString.append("Ellipse " + currentShape.getName());
         returnString.append("Create ellipse " + currentShape.getName() + " with color "
-                + colorConvert(currentShape.getColor(0))
+                + ScriptView.colorConvert(currentShape.getColor(0))
                 + " and corner at (" + currentShape.getX(0) + ", "
                 + currentShape.getY(0) + "), width: "
                 + currentShape.getWidth(0) + " and height: "
@@ -149,12 +147,4 @@ public class TextAnimationView {
     return returnString;
   }
 
-  /**
-   * Convert color class to proper text color format string.
-   */
-  private String colorConvert(Color color) {
-    String convertedString = "rgb(" + color.getRed() + "," + color.getGreen() + ","
-            + color.getBlue() + ")";
-    return convertedString;
-  }
 }

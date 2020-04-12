@@ -86,7 +86,17 @@ public interface PlaybackInterface {
    */
   void decreaseSpeed();
 
+  /**
+   * Create pop up message indicating shape not found.
+   */
+  void popupErrorMessageDialogue();
 
+  /**
+   * Add dialogue pop up for user to enter shape's name.
+   *
+   * @return a String with shape's name
+   */
+  String addJDialogue();
 }
 
 

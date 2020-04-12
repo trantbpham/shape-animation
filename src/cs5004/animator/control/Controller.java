@@ -15,12 +15,20 @@ import static cs5004.animator.view.PlaybackAnimationView.PAUSE;
 import static cs5004.animator.view.PlaybackAnimationView.PLAY;
 import static cs5004.animator.view.PlaybackAnimationView.REWIND;
 
+/**
+ * Controller implements ActionListener and IController interface. This controller takes in
+ * model and view, in attempt to allow users interacting from the view and control the animation.
+ */
 public class Controller implements ActionListener, IController {
 
   private PlaybackAnimationView view;
   private AnimationModelImpl model;
 
-
+  /**
+   * Controller interacts with elements from model and view by taking in model and view.
+   * @param view
+   * @param model
+   */
   public Controller(PlaybackAnimationView view, AnimationModelImpl model) {
     this.view = view;
     this.model = model;
@@ -55,11 +63,13 @@ public class Controller implements ActionListener, IController {
       case DISABLE_LOOP:
         view.disableLoop();
         break;
-
       case DELETE_SHAPE:
-        model.removeShape(view.addJDialogue());
+        try {
+          model.removeShape(view.addJDialogue());
+        } catch (IllegalArgumentException i) {
+          view.popupErrorMessageDialogue();
+        }
     }
-
   }
 
 }

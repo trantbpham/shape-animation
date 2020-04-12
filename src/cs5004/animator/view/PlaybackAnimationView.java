@@ -177,6 +177,13 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
   }
 
+  @Override
+  public void popupErrorMessageDialogue() {
+    JFrame errorPopUp = new JFrame();
+    JOptionPane.showMessageDialog(errorPopUp, "Shape not found");
+  }
+
+  @Override
   public String addJDialogue() {
     JFrame dialogueFrame = new JFrame();
     String name = JOptionPane.showInputDialog("Enter shape name:");

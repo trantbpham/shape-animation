@@ -42,6 +42,8 @@ The application model consists of:
 	storing all shapes in a hashtable, utilizing the shape's name as the key.
 	
 The application views consist of:
+
+
     
     * VisualAnimationView - this class generates a visual animation of the 
         input by extending the JFrame class, adding a panel, and overriding the JPanel
@@ -53,6 +55,16 @@ The application views consist of:
         sleep length is a function of the speed parameter and determines the speed of the 
         visual animation. The panel will keep repainting as long as an object in the input
         file is 'alive' or has some animation remaining.
+        
+    * PlaybackAnimationView (Assignment 10) - This view functions very much like the VisualAnimation
+        View, see above for operation details. This view is different from the  VisualAnimation
+        View because Playback allows for user input and control of the animation as 
+        it is playing. A Jpanel added to the Frame includes user instructions for how to use the 
+        buttons layed out to control the animation. This allows users to play, pause, rewind, loop,
+        and change the speed of the animation in real time. Furthermore, there is the option to 
+        delete shapes from the view via the delete shape button, which lists all the shapes in the 
+        animation and allows the users to type the name of the shape to delete. The shape will then 
+        be removed from the model and thus the animation.
         
     * TextAnimationView - this class generates a text view of the animation by utilizing the 
     input of from the builder, adding those info in lists appropriate to its category, and 

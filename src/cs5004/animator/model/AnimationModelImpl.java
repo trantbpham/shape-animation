@@ -143,7 +143,7 @@ public class AnimationModelImpl implements AnimationModel {
 
   }
 
-  public void removeShape(String name) throws IllegalArgumentException{
+  public void removeShape(String name) throws IllegalArgumentException {
     if (!shapes.containsKey(name) ) {
       throw new IllegalArgumentException("Shape doesn't exist");
     }

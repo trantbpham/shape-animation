@@ -2,7 +2,9 @@ package cs5004.animator.view;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import cs5004.animator.model.AbstractShape;
 import cs5004.animator.model.AnimationModelImpl;
@@ -37,10 +39,14 @@ public class SvgAnimationView {
    */
   public StringBuilder printSGV() {
     HashMap<String, AbstractShape> map = animationModel.getShape();
+    List<String> keyList = new ArrayList<String>(map.keySet());
+    Collections.sort(keyList);
     ArrayList<AbstractShape> shapeList = new ArrayList<>();
-    for (String name : map.keySet()) {
+    for (String name : keyList) {
       shapeList.add(map.get(name));
+
     }
+
 
     StringBuilder returnString = new StringBuilder("<svg ");
 
@@ -77,8 +83,6 @@ public class SvgAnimationView {
       }
 
       for (int i = 0; i < currentShape.getFromXDestinationSize(); i++) {
-        if ((currentShape.getFromXDestination(i) < currentShape.getMoveXDestination(i))
-                || (currentShape.getFromXDestination(i) > currentShape.getMoveXDestination(i))) {
           returnString.append("        <animate attributeType=\"xml\" ");
           returnString.append("begin=\""
                   + currentShape.getMotionMoveStartTime(i) * timescale + "ms\" ");
@@ -89,12 +93,9 @@ public class SvgAnimationView {
           returnString.append("to=\"" + currentShape.getMoveXDestination(i) + "\" ");
           returnString.append("fill=\"freeze\" />\n");
 
-        }
       }
 
       for (int j = 0; j < currentShape.getMoveYDestinationSize(); j++) {
-        if ((currentShape.getFromYDestination(j) < currentShape.getMoveYDestination(j))
-                || (currentShape.getFromYDestination(j) > currentShape.getMoveXDestination(j))) {
           returnString.append("        <animate attributeType=\"xml\" ");
           returnString.append("begin=\""
                   + currentShape.getMotionMoveStartTime(j) * timescale + "ms\" ");
@@ -105,13 +106,8 @@ public class SvgAnimationView {
           returnString.append("to=\"" + currentShape.getMoveYDestination(j) + "\" ");
           returnString.append("fill=\"freeze\" />\n");
         }
-      }
 
       for (int k = 0; k < currentShape.getWidthDestinationSize(); k++) {
-        if ((currentShape.getWidthDestination(k) < currentShape.getFromWidthDestination(k))
-                || (currentShape.getWidthDestination(k)
-                > currentShape.getFromWidthDestination(k))) {
-
           System.out.println(currentShape.getMotionResizeStartTime(0));
           returnString.append("        <animate attributeType=\"xml\" ");
           returnString.append("begin=\""
@@ -123,11 +119,9 @@ public class SvgAnimationView {
           returnString.append("to=\"" + currentShape.getWidthDestination(k) + "\" ");
           returnString.append("fill=\"freeze\" />\n");
         }
-      }
+
       for (int l = 0; l < currentShape.getHeightDestinationSize(); l++) {
-        if ((currentShape.getHeightDestination(l) < currentShape.getFromHeightDestination(l))
-                || (currentShape.getHeightDestination(l)
-                > currentShape.getFromHeightDestination(l))) {
+
           returnString.append("        <animate attributeType=\"xml\" ");
           returnString.append("begin=\""
                   + currentShape.getMotionResizeStartTime(l) * timescale + "ms\" ");
@@ -138,7 +132,7 @@ public class SvgAnimationView {
           returnString.append("to=\"" + currentShape.getHeightDestination(l) + "\" ");
           returnString.append("fill=\"freeze\" />\n");
         }
-      }
+
       for (int m = 0; m < currentShape.getColorSize(); m++) {
         if (((currentShape.getFromRColor(m) < currentShape.getRColorDestination(m))
                 || (currentShape.getFromRColor(m) < currentShape.getRColorDestination(m)))

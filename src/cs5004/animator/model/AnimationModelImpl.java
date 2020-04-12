@@ -452,7 +452,7 @@ public class AnimationModelImpl implements AnimationModel {
       }
 
       if (t2 < t1) {
-        throw new IllegalArgumentException("starttime must be less than end time");
+        throw new IllegalArgumentException("start time must be less than end time");
       }
 
       animationModel.addMove(name, x1, y1, x2, y2, t1, t2);

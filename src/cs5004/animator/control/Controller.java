@@ -26,8 +26,8 @@ public class Controller implements ActionListener, IController {
 
   /**
    * Controller interacts with elements from model and view by taking in model and view.
-   * @param view
-   * @param model
+   * @param view take in the PlayBackView
+   * @param model take in the AnimationModelImpl model
    */
   public Controller(PlaybackAnimationView view, AnimationModelImpl model) {
     this.view = view;

@@ -568,6 +568,10 @@ public abstract class AbstractShape implements Shape {
             + this.getWidth(0) + " and height: " + this.getHeight(0) + "\n";
   }
 
+  public String removeShapeCaption() {
+    return "Shape " + this.getName() + "was removed by user.\n";
+  }
+
   @Override
   public String captionColorChange(float r, float g, float b, int startTime, int endTime) {
 

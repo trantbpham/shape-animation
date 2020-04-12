@@ -1,7 +1,13 @@
 package cs5004.animator.view;
 
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.RenderingHints;
+import java.awt.Graphics2D;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.BorderLayout;
 
 import javax.swing.*;
 
@@ -385,7 +391,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
     /**
      * Getter method to return the time variable of myPanel.
-     * <p>
      * return - int; the value of myPanel's internal time variable.
      */
     public int getTime() {

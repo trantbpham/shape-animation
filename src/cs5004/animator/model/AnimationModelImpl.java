@@ -143,6 +143,25 @@ public class AnimationModelImpl implements AnimationModel {
 
   }
 
+  public void removeShape(String name) throws IllegalArgumentException{
+    if (!shapes.containsKey(name) ) {
+      throw new IllegalArgumentException("Shape doesn't exist");
+    }
+    shapes.remove(name);
+
+    for (String each : animationHistory) {
+      if (each.equals(name)) {
+        animationHistory.remove(name);
+      }
+    }
+
+    for (String each : orderedKeys) {
+      if (each.equals(name)) {
+        orderedKeys.remove(name);
+      }
+    }
+  }
+
   @Override
   public void addMove(String name, double x1, double y1, double endX, double endY,
                       int startTime, int endTime) throws IllegalArgumentException {

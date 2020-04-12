@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.*;
-
+import cs5004.animator.model.AbstractShape;
 import cs5004.animator.control.Controller;
 import cs5004.animator.model.AnimationModelImpl;
 
@@ -43,9 +43,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   private boolean play;
   private boolean reverse;
   private boolean pause;
-  private InputMap inputMap;
-  private ActionMap actionMap;
-
+  private JTextField deleteField;
 
   /**
    * Constructor for VisualAnimationView, creates the JFrame and updates the animation
@@ -64,7 +62,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     pause = false;
     Controller controller = new Controller(this, model);
     this.myModel = model;
-
     leftBoundOffset = myModel.getLeftBound();
     topBoundOffset = myModel.getTopBound();
 
@@ -150,6 +147,17 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     decreaseSpeedButton.addActionListener(controller);
     decreaseSpeedButton.setActionCommand(decreaseSpeedButton.getText());
     buttonPanel.add(decreaseSpeedButton);
+
+    JButton removeShapeButton = new JButton("Remove Shape");
+    removeShapeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    JLabel deleteLabel = new JLabel();
+    deleteLabel.setText("Enter shape name");
+    deleteLabel.setBounds(10, 100, 200, 100);
+    JTextField deleteField = new JTextField();
+    deleteField.setBounds(100, 50, 150, 50);
+    removeShapeButton.addActionListener(controller);
+    removeShapeButton.setActionCommand(removeShapeButton.getText());
+    buttonPanel.add(removeShapeButton);
 
     //Spacer at the bottom of the button panel
     textbox = new JLabel(" ");
@@ -237,6 +245,9 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     }
   }
 
+  public JTextField getJTextField() {
+    return deleteField;
+  }
 
   @Override
   public void setListener(ActionListener listener) {
@@ -282,6 +293,10 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   public void decreaseSpeed() {
     this.frameDelay = this.frameDelay * 1.1;
 
+  }
+
+  public void deleteShape( String name) {
+    this.myModel.removeShape(name);
   }
 
   /**

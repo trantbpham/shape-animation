@@ -52,6 +52,9 @@ public class Controller implements ActionListener {
       case DISABLE_LOOP:
         view.disableLoop();
         break;
+      case "Delete Shape":
+        String getValue = view.getJTextField().getText();
+        view.deleteShape(getValue);
     }
 
   }

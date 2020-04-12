@@ -9,7 +9,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-//import javax.swing.*;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;

@@ -78,11 +78,7 @@ The application views consist of:
         Abstract Shape class, and retrieve the data to print from those lists in shape. 
         SVGAnimation takes in the AnimationModel as its field, and from there store the shapes 
         in form of hashmap, loop through each shape to get the data.
-    String following the SVG format. Similarly to the approach of TextAnimation View, by 
-    utilizing the input of from the builder, adding those info in lists appropriate to 
-    Abstract Shape class, and retrieve the data to print from those lists in shape. 
-    SVGAnimation takes in the AnimationModel as its field, and from there store the shapes 
-    in form of hashmap, loop through each shape to get the data.
+
     
 The application control consist of:
     * Controller - this class contains two methods: goAnimation and actionPerformed:

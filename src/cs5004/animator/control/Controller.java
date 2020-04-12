@@ -9,6 +9,7 @@ import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.view.PlaybackAnimationView;
 
 import static cs5004.animator.view.PlaybackAnimationView.DECREASE_SPEED;
+import static cs5004.animator.view.PlaybackAnimationView.DELETE_SHAPE;
 import static cs5004.animator.view.PlaybackAnimationView.DISABLE_LOOP;
 import static cs5004.animator.view.PlaybackAnimationView.ENABLE_LOOP;
 import static cs5004.animator.view.PlaybackAnimationView.INCREASE_SPEED;
@@ -55,9 +56,9 @@ public class Controller implements ActionListener {
       case DISABLE_LOOP:
         view.disableLoop();
         break;
-      case "Delete Shape":
-        String getValue = view.getJTextField().getText();
-        view.deleteShape(getValue);
+
+      case DELETE_SHAPE:
+        model.removeShape(view.addJDialogue());
     }
 
   }

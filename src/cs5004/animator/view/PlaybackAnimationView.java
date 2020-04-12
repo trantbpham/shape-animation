@@ -28,6 +28,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   public static final String DISABLE_LOOP = "Disable Loop";
   public static final String INCREASE_SPEED = "Increase Speed";
   public static final String DECREASE_SPEED = "Decrease Speed";
+  public static final String DELETE_SHAPE = "Remove Shape";
   /*
   private JButton playButton, pauseButton, rewindButton, increaseSpeedButton,
           decreaseSpeedButton, enableLoopButton,
@@ -169,13 +170,8 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     decreaseSpeedButton.setActionCommand(decreaseSpeedButton.getText());
     buttonPanel.add(decreaseSpeedButton);
 
-    JButton removeShapeButton = new JButton("Remove Shape");
+    JButton removeShapeButton = new JButton(DELETE_SHAPE);
     removeShapeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    JLabel deleteLabel = new JLabel();
-    deleteLabel.setText("Enter shape name");
-    deleteLabel.setBounds(10, 100, 200, 100);
-    JTextField deleteField = new JTextField();
-    deleteField.setBounds(100, 50, 150, 50);
     removeShapeButton.addActionListener(controller);
     removeShapeButton.setActionCommand(removeShapeButton.getText());
     buttonPanel.add(removeShapeButton);
@@ -188,6 +184,12 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     this.pack();
     this.setVisible(true);
 
+  }
+
+  public String addJDialogue() {
+    JFrame dialogueFrame = new JFrame();
+    String name = JOptionPane.showInputDialog("Enter shape name:");
+    return name;
   }
 
   @Override
@@ -258,10 +260,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
     }
 
-  }
-
-  public JTextField getJTextField() {
-    return deleteField;
   }
 
   @Override

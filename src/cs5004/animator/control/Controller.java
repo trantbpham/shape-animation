@@ -2,8 +2,6 @@ package cs5004.animator.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import cs5004.animator.model.AnimationModelImpl;
 import cs5004.animator.view.PlaybackAnimationView;
@@ -17,7 +15,7 @@ import static cs5004.animator.view.PlaybackAnimationView.PAUSE;
 import static cs5004.animator.view.PlaybackAnimationView.PLAY;
 import static cs5004.animator.view.PlaybackAnimationView.REWIND;
 
-public class Controller implements ActionListener {
+public class Controller implements ActionListener, IController {
 
   private PlaybackAnimationView view;
   private AnimationModelImpl model;
@@ -28,13 +26,14 @@ public class Controller implements ActionListener {
     this.model = model;
   }
 
-  public void go(){
+  public void goAnimation() {
     this.view.runAnimation();
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    switch (e.getActionCommand()) {
+    String action = e.getActionCommand();
+    switch (action) {
       case PLAY:
         view.play();
         break;

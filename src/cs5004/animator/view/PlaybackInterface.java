@@ -1,19 +1,17 @@
 package cs5004.animator.view;
 
-import java.awt.event.ActionListener;
-
 /**
- * This class creates the a visual animation view using JFrame, JPanel and Graphics2D objects.
- *     This view also supports commands during the animation from a controller class calling methods
- *     within the view itself. The visual output will repaint itself for every tick of the model.
- *     JPanel is extended to update the paintComponent method and create the animation itself.
+ * This class creates the a visual animation view using JFrame, JPanel and Graphics2D objects. This
+ * view also supports commands during the animation from a controller class calling methods within
+ * the view itself. The visual output will repaint itself for every tick of the model. JPanel is
+ * extended to update the paintComponent method and create the animation itself.
  */
 public interface PlaybackInterface {
 
   /**
    * Begins running the animation by starting a while(true) loop which checks the state of the
-   *     various internal values for play, pause, rewind etc. and determines how to behave.
-   *     Also maintains an internal timer using the sleep method.
+   * various internal values for play, pause, rewind etc. and determines how to behave. Also
+   * maintains an internal timer using the sleep method.
    */
   void runAnimation();
 
@@ -73,8 +71,8 @@ public interface PlaybackInterface {
   void enableLoop();
 
   /**
-   * Disables the loop variable (enabled by default) to stop the looping of the animation.
-   *     Animation will stop on the final frame.
+   * Disables the loop variable (enabled by default) to stop the looping of the animation. Animation
+   * will stop on the final frame.
    */
   void disableLoop();
 

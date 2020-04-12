@@ -1,8 +1,6 @@
 package cs5004.animator.model;
 
-import cs5004.animator.util.AnimationBuilder;
-
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,9 +9,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import cs5004.animator.util.AnimationBuilder;
+
 /**
  * Implementing all methods in the AnimationModel Interface, represents the animation, storing all
- *     shapes in a hashtable, utilizing the shape's name as the key.
+ * shapes in a hashtable, utilizing the shape's name as the key.
  */
 public class AnimationModelImpl implements AnimationModel {
 
@@ -143,8 +143,9 @@ public class AnimationModelImpl implements AnimationModel {
 
   }
 
+  @Override
   public void removeShape(String name) throws IllegalArgumentException {
-    if (!shapes.containsKey(name) ) {
+    if (!shapes.containsKey(name)) {
       throw new IllegalArgumentException("Shape doesn't exist");
     }
     shapes.remove(name);
@@ -349,8 +350,8 @@ public class AnimationModelImpl implements AnimationModel {
 
   /**
    * AnimationModelBuilder is the internal builder for AnimationModelImpl. It utilizes
-   *     AnimationModelReader to parse and input file and use that information to build the
-   *     AnimationModelImpl object with the correct shapes and animations.
+   * AnimationModelReader to parse and input file and use that information to build the
+   * AnimationModelImpl object with the correct shapes and animations.
    */
   public static final class AnimationModelBuilder implements AnimationBuilder<AnimationModelImpl> {
     private AnimationModelImpl animationModel = new AnimationModelImpl();
@@ -361,8 +362,8 @@ public class AnimationModelImpl implements AnimationModel {
 
     /**
      * Default constructor for the AnimationModelBuilder, this simply initializes the values that
-     *     the builder will need to create the AnimationModelImpl object such as the object itself
-     *     and its bounds.
+     * the builder will need to create the AnimationModelImpl object such as the object itself and
+     * its bounds.
      */
     public AnimationModelBuilder() {
       this.animationModel = new AnimationModelImpl();

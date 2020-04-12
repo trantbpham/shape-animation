@@ -1,6 +1,5 @@
 package cs5004.animator.view;
 
-//import java.awt.;
 
 import java.awt.*;
 
@@ -9,7 +8,6 @@ import javax.swing.*;
 import cs5004.animator.control.Controller;
 import cs5004.animator.model.AnimationModelImpl;
 
-//import javax.swing.*;
 
 /**
  * This class creates the a visual animation view using JFrame, JPanel and Graphics2D objects. This
@@ -26,11 +24,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   public static final String INCREASE_SPEED = "Increase Speed";
   public static final String DECREASE_SPEED = "Decrease Speed";
   public static final String DELETE_SHAPE = "Remove Shape";
-  /*
-  private JButton playButton, pauseButton, rewindButton, increaseSpeedButton,
-          decreaseSpeedButton, enableLoopButton,
-          disableLoopButton;
-          */
+
 
   private AnimationModelImpl myModel;
   private int leftBoundOffset;

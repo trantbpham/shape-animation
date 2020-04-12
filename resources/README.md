@@ -42,8 +42,6 @@ The application model consists of:
 	storing all shapes in a hashtable, utilizing the shape's name as the key.
 	
 The application views consist of:
-
-
     
     * VisualAnimationView - this class generates a visual animation of the 
         input by extending the JFrame class, adding a panel, and overriding the JPanel
@@ -67,19 +65,19 @@ The application views consist of:
         be removed from the model and thus the animation.
         
     * TextAnimationView - this class generates a text view of the animation by utilizing the 
-    input of from the builder, adding those info in lists appropriate to its category, and 
-    retrieve the data to print from those lists in shape. TextAnimation takes in the 
-    AnimationModel as its field, and from there store the shapes in form of hashmap, loop 
-    through each shape to get the data.
+        input of from the builder, adding those info in lists appropriate to its category, and 
+        retrieve the data to print from those lists in shape. TextAnimation takes in the 
+        AnimationModel as its field, and from there store the shapes in form of hashmap, loop 
+        through each shape to get the data.
     
     * SVGAnimationView - this class generates a SVG view of the animation by generating a 
-    String following the SVG format. Similarly to the approach of TextAnimation View, by 
-    utilizing the input of from the builder, adding those info in lists appropriate to 
-    Abstract Shape class, and retrieve the data to print from those lists in shape. 
-    SVGAnimation takes in the AnimationModel as its field, and from there store the shapes 
-    in form of hashmap, loop through each shape to get the data.
+        String following the SVG format. Similarly to the approach of TextAnimation View, by 
+        utilizing the input of from the builder, adding those info in lists appropriate to 
+        Abstract Shape class, and retrieve the data to print from those lists in shape. 
+        SVGAnimation takes in the AnimationModel as its field, and from there store the shapes 
+        in form of hashmap, loop through each shape to get the data.
 
-================== MODEL UPDATES ================================
+================== MODEL UPDATES ASSIGNMENT 8 ================================
 
     1. Added canvas getters functions to model so we can access canvas 
     parameters from the model in the views.
@@ -106,6 +104,17 @@ The application views consist of:
     6. Refactor each methods in AnimationModel, taking in extra arguments from the builder
     to store data to use for the Text and SVG view, and then assign those values to the lists
     that AbstractShape has. 
+    
+================== MODEL UPDATES ASSIGNMENT 10 ================================
+    
+    1. Added a removeShape method to the model so that we can remove a shape from the animation. 
+        This in turn will result in the shape removing itself from the view since the shape will no
+        longer return any values when view asks the model for all the shape parameters.
+    
+    2. Added a Stringbuilder method to the model to return a stringbuilder with all the names of the
+        shapes currently in the model. This was used to test and validate the removeShape method 
+        behaving correctly.
+
 
 
 

@@ -401,14 +401,14 @@ public class AnimationModelImplTest {
             10, 10, 5, 5, .5,
             .5, .5, 3, 10);
     System.out.print("\nbefore remove\n");
-    System.out.print(testAnimationModel.getShapesNamInAnimation().toString() + "\n");
+    System.out.print(testAnimationModel.getShapesNameInAnimation().toString() + "\n");
     assertEquals("testEllipse, testRectangle",
-            testAnimationModel.getShapesNamInAnimation().toString());
+            testAnimationModel.getShapesNameInAnimation().toString());
 
     testAnimationModel.removeShape("testRectangle");
     System.out.print("\nafter remove\n");
-    System.out.print(testAnimationModel.getShapesNamInAnimation().toString() + "\n");
-    assertEquals("testEllipse", testAnimationModel.getShapesNamInAnimation().toString());
+    System.out.print(testAnimationModel.getShapesNameInAnimation().toString() + "\n");
+    assertEquals("testEllipse", testAnimationModel.getShapesNameInAnimation().toString());
 
 
 

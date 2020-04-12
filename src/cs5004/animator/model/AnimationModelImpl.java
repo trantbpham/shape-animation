@@ -300,7 +300,7 @@ public class AnimationModelImpl implements AnimationModel {
   }
 
   @Override
-  public StringBuilder getShapesNamInAnimation() {
+  public StringBuilder getShapesNameInAnimation() {
     StringBuilder returnString = new StringBuilder("");
     if (shapes.isEmpty()) {
       return returnString.append("shape not found");

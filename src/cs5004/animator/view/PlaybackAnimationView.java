@@ -43,37 +43,41 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   private boolean play;
   private boolean reverse;
   private boolean pause;
-  private InputMap inputMap;
-  private ActionMap actionMap;
+  private MyPanel animationPanel;
 
 
   /**
-   * Constructor for VisualAnimationView, creates the JFrame and updates the animation
-   * continuously.
+   * Constructor for PlaybackAnimationView, creates the JFrame, animation panel, Jbuttons, and
+   *     labels for the user interface. Also connects the controller to this view so the
+   *     controller can send commands to this view.
    *
    * @param model - the model that this view pulls information to display from
    * @param speed - the speed of the animation
    */
   public PlaybackAnimationView(AnimationModelImpl model, int speed) {
-    MyPanel animationPanel;
+    //initialize variables
     animationLength = model.getLongestLife();
     frameDelay = 1000 / speed;
     loop = true;
-    play = true;
+    play = false;
     reverse = false;
-    pause = false;
+    pause = true;
     Controller controller = new Controller(this, model);
     this.myModel = model;
 
+
+    //set boundaries based on input (from model)
     leftBoundOffset = myModel.getLeftBound();
     topBoundOffset = myModel.getTopBound();
 
+    //size slightly larger than model; this makes it look better
     this.setSize(myModel.getWidth() + 50, myModel.getHeight() + 50);
     this.setLocation(leftBoundOffset, topBoundOffset);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     this.setLayout(new BorderLayout());
 
+    //initializing and adding Animation Panel
     animationPanel = new MyPanel();
     animationPanel.setPreferredSize(new Dimension(myModel.getWidth(), myModel.getHeight()));
     this.add(animationPanel, BorderLayout.CENTER);
@@ -172,10 +176,11 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     this.pack();
     this.setVisible(true);
 
+  }
+
+  @Override
+  public void runAnimation() {
     while (true) {
-      System.out.println("this.play is " + this.play);
-      System.out.println("this.pause is " + this.pause);
-      System.out.println("this.reverse is " + this.reverse);
 
       if (this.play && animationPanel.getTime() < animationLength) {
         System.out.println("if 1");
@@ -189,9 +194,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
         }
 
         continue;
-      }
-
-      if (this.reverse && animationPanel.getTime() <=
+      } else if (this.reverse && animationPanel.getTime() <=
               animationLength && animationPanel.getTime() > 0 && !this.pause) {
         System.out.println("if 2: this.reverse is " + this.reverse);
         animationPanel.previousTime();
@@ -203,9 +206,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
           e.printStackTrace();
         }
         continue;
-      }
-
-      if (this.play && this.loop) {
+      } else if (this.play && this.loop) {
         System.out.println("if 3");
         animationPanel.resetTime();
         animationPanel.repaint();
@@ -216,9 +217,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
           e.printStackTrace();
         }
         continue;
-      }
-
-      if (this.reverse && this.loop) {
+      } else if (this.reverse && this.loop) {
         System.out.println("if 3");
         animationPanel.resetEndTime();
         animationPanel.repaint();
@@ -229,15 +228,11 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
           e.printStackTrace();
         }
         continue;
-      }
-
-      if (this.play && !this.loop) {
+      } else if (this.play && !this.loop) {
         System.out.println("if 5");
         this.pause();
         continue;
-      }
-
-      if (this.pause) {
+      } else if (this.pause) {
         System.out.println("if 6");
         try {
           Thread.sleep((long) this.frameDelay);
@@ -247,15 +242,38 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
         continue;
       }
 
-    }
-  }
+      continue;
 
+    }
+
+  }
 
   @Override
-  public void setListener(ActionListener listener) {
-
+  public boolean getPause() {
+    return this.pause;
   }
 
+  @Override
+  public boolean getPlay() {
+    return this.play;
+  }
+
+  @Override
+  public boolean getRewind() {
+    return this.reverse;
+  }
+
+  @Override
+  public boolean getLoop() {
+    return this.loop;
+  }
+
+  @Override
+  public double getFrameDelay() {
+    return this.frameDelay;
+  }
+
+  @Override
   public void rewind() {
     this.reverse = true;
     this.play = false;
@@ -266,6 +284,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   public void pause() {
     this.pause = true;
     this.play = false;
+    this.reverse = false;
   }
 
   @Override
@@ -298,34 +317,52 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   }
 
   /**
-   * myPanel is just JPanel with overridden paintComponent method to correctly paint the
-   * shapes from  the model.
+   * myPanel is a JPanel with overridden paintComponent method to correctly paint the shapes from
+   *     the model. It also contains the 'time' variable, which behaves as the frame of the
+   *     animation. The panel also contains methods to move the frame forward, backwards, or reset.
    */
-  private class MyPanel extends JPanel {
+  class MyPanel extends JPanel {
     int time = 0;
 
     /**
      * nextTime is a public method to myPanel which will move the timer one tick forward. This gets
-     * called in VisualAnimationView to move the animation forward.
+     *     called in PlaybackAnimationView to move the animation forward.
      */
     public void nextTime() {
       this.time += 1;
       //if(time > myModel.)
     }
 
+    /**
+     * nextTime is a public method to myPanel which will move the timer one tick backward. This gets
+     *     called in PlaybackAnimationView to move the animation in reverse.
+     */
     public void previousTime() {
       this.time -= 1;
-      //if(time > myModel.)
     }
 
+    /**
+     * nextTime is a public method to myPanel which will reset the local time variable, thus
+     *     beginning the animation on the first frame again for the purpose of looping.
+     */
     public void resetTime() {
       this.time = 0;
     }
 
+    /**
+     * nextTime is a public method to myPanel which will reset the local time variable to the last
+     *     frame of the animation, thus beginning the animation on the last frame again for the
+     *     purpose of looping in reverse.
+     */
     public void resetEndTime() {
       this.time = animationLength;
     }
 
+    /**
+     * Getter method to return the time variable of myPanel.
+     *
+     * return - int; the value of myPanel's internal time variable.
+     */
     public int getTime() {
       return this.time;
     }
@@ -356,10 +393,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
                   (int) Double.parseDouble(parseString[4]));
         }
       }
-
-
     }
-
   }
-
 }

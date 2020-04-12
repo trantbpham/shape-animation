@@ -18,28 +18,28 @@ public interface AnimationModel {
   /**
    * Returns the top bound location of the model for the purposes of drawing the view.
    *
-   * @returns - Left bound of the model
+   * @return - Left bound of the model
    */
   int getTopBound();
 
   /**
    * Returns the Width of the model's area for the purposes of drawing the view.
    *
-   * @returns - Width of the model
+   * @return - Width of the model
    */
   int getWidth();
 
   /**
    * Returns the Height of the model's area for the purposes of drawing the view.
    *
-   * @returns - Height of the model
+   * @return - Height of the model
    */
   int getHeight();
 
   /**
    * Returns the Longest life of a shape in this model for use in terminating the views.
    *
-   * @returns - Longest lifetime of a shape in the model in arbitrary time t.
+   * @return - Longest lifetime of a shape in the model in arbitrary time t.
    */
   int getLongestLife();
 

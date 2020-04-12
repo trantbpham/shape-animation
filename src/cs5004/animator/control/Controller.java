@@ -25,7 +25,10 @@ public class Controller implements ActionListener, KeyListener {
   public Controller(PlaybackAnimationView view, AnimationModelImpl model) {
     this.view = view;
     this.model = model;
-    view.setListener(this);
+  }
+
+  public void go(){
+    this.view.runAnimation();
   }
 
   @Override

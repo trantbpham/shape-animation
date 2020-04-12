@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.*;
-
+import cs5004.animator.model.AbstractShape;
 import cs5004.animator.control.Controller;
 import cs5004.animator.model.AnimationModelImpl;
 
@@ -45,6 +45,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   private boolean pause;
   private MyPanel animationPanel;
 
+  private JTextField deleteField;
 
   /**
    * Constructor for PlaybackAnimationView, creates the JFrame, animation panel, Jbuttons, and
@@ -114,13 +115,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     //buttons
     JButton playButton = new JButton(PLAY);
     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    /*inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), PLAY);
-    actionMap.put(PLAY, new AbstractAction() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        playButton.doClick();
-      }
-    });*/
     playButton.addActionListener(controller);
     playButton.setActionCommand(playButton.getText());
     buttonPanel.add(playButton);
@@ -128,7 +122,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     JButton pauseButton = new JButton(PAUSE);
     pauseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     pauseButton.addActionListener(controller);
-    playButton.setMnemonic('P');
     pauseButton.setActionCommand(pauseButton.getText());
 
     buttonPanel.add(pauseButton);
@@ -136,37 +129,43 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     JButton rewindButton = new JButton(REWIND);
     rewindButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     rewindButton.addActionListener(controller);
-    playButton.setMnemonic('W');
     rewindButton.setActionCommand(rewindButton.getText());
     buttonPanel.add(rewindButton);
 
     JButton enableLoopButton = new JButton(ENABLE_LOOP);
     enableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     enableLoopButton.addActionListener(controller);
-    //playButton.setMnemonic('E');
     enableLoopButton.setActionCommand(enableLoopButton.getText());
     buttonPanel.add(enableLoopButton);
 
     JButton disableLoopButton = new JButton(DISABLE_LOOP);
     disableLoopButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     disableLoopButton.addActionListener(controller);
-    //playButton.setMnemonic('D');
     disableLoopButton.setActionCommand(disableLoopButton.getText());
     buttonPanel.add(disableLoopButton);
 
     JButton increaseSpeedButton = new JButton(INCREASE_SPEED);
     increaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     increaseSpeedButton.addActionListener(controller);
-    //playButton.setMnemonic('I');
     increaseSpeedButton.setActionCommand(increaseSpeedButton.getText());
     buttonPanel.add(increaseSpeedButton);
 
     JButton decreaseSpeedButton = new JButton(DECREASE_SPEED);
     decreaseSpeedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     decreaseSpeedButton.addActionListener(controller);
-    //playButton.setMnemonic('K');
     decreaseSpeedButton.setActionCommand(decreaseSpeedButton.getText());
     buttonPanel.add(decreaseSpeedButton);
+
+    JButton removeShapeButton = new JButton("Remove Shape");
+    removeShapeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    JLabel deleteLabel = new JLabel();
+    deleteLabel.setText("Enter shape name");
+    deleteLabel.setBounds(10, 100, 200, 100);
+    JTextField deleteField = new JTextField();
+    deleteField.setBounds(100, 50, 150, 50);
+    removeShapeButton.addActionListener(controller);
+    removeShapeButton.setActionCommand(removeShapeButton.getText());
+    buttonPanel.add(removeShapeButton);
 
     //Spacer at the bottom of the button panel
     textbox = new JLabel(" ");
@@ -248,6 +247,10 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
   }
 
+  public JTextField getJTextField() {
+    return deleteField;
+  }
+
   @Override
   public boolean getPause() {
     return this.pause;
@@ -314,6 +317,10 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
   public void decreaseSpeed() {
     this.frameDelay = this.frameDelay * 1.1;
 
+  }
+
+  public void deleteShape( String name) {
+    this.myModel.removeShape(name);
   }
 
   /**

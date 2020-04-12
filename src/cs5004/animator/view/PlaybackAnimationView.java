@@ -185,8 +185,26 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
 
   @Override
   public String addJDialogue() {
-    JFrame dialogueFrame = new JFrame();
-    String name = JOptionPane.showInputDialog("Enter shape name:");
+    int index;
+    int exit = 0;
+
+    String shapeList = myModel.getKey().toString();
+    String output = "";
+
+    while(exit == 0){
+      for(int i = 0; i < 5; i ++){
+        index = shapeList.indexOf(",");
+        if(index == -1){
+          output = output + shapeList;
+          exit = 1;
+          break;
+        }
+        output = output + shapeList.substring(0,index + 1);
+        shapeList = shapeList.substring(index + 1);
+      }
+      output = output + "\n";
+    }
+    String name = JOptionPane.showInputDialog("Available shapes: " + output + "\nEnter shape name:");
     return name;
   }
 
@@ -195,7 +213,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     while (true) {
 
       if (this.play && animationPanel.getTime() < animationLength) {
-        System.out.println("if 1");
         animationPanel.nextTime();
         animationPanel.repaint();
 
@@ -208,7 +225,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
         continue;
       } else if (this.reverse && animationPanel.getTime() <=
               animationLength && animationPanel.getTime() > 0 && !this.pause) {
-        System.out.println("if 2: this.reverse is " + this.reverse);
         animationPanel.previousTime();
         animationPanel.repaint();
 
@@ -219,7 +235,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
         }
         continue;
       } else if (this.play && this.loop) {
-        System.out.println("if 3");
         animationPanel.resetTime();
         animationPanel.repaint();
 
@@ -230,7 +245,6 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
         }
         continue;
       } else if (this.reverse && this.loop) {
-        System.out.println("if 3");
         animationPanel.resetEndTime();
         animationPanel.repaint();
 
@@ -241,11 +255,9 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
         }
         continue;
       } else if (this.play && !this.loop) {
-        System.out.println("if 5");
         this.pause();
         continue;
       } else if (this.pause) {
-        System.out.println("if 6");
         try {
           Thread.sleep((long) this.frameDelay);
         } catch (InterruptedException e) {

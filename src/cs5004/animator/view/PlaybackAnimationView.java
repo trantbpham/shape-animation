@@ -341,7 +341,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     }
 
     /**
-     * nextTime is a public method to myPanel which will move the timer one tick backward. This gets
+     * previousTime is a public method to myPanel which will move the timer one tick backward. This gets
      *     called in PlaybackAnimationView to move the animation in reverse.
      */
     public void previousTime() {
@@ -349,7 +349,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     }
 
     /**
-     * nextTime is a public method to myPanel which will reset the local time variable, thus
+     * resetTime is a public method to myPanel which will reset the local time variable, thus
      *     beginning the animation on the first frame again for the purpose of looping.
      */
     public void resetTime() {
@@ -357,7 +357,7 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     }
 
     /**
-     * nextTime is a public method to myPanel which will reset the local time variable to the last
+     * resetEndTime is a public method to myPanel which will reset the local time variable to the last
      *     frame of the animation, thus beginning the animation on the last frame again for the
      *     purpose of looping in reverse.
      */

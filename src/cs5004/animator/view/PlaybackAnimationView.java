@@ -99,13 +99,26 @@ public class PlaybackAnimationView extends JFrame implements PlaybackInterface {
     JLabel textbox = new JLabel(" ");
     textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(textbox);
-    textbox = new JLabel("First Line of instructions");
+    textbox = new JLabel("Hello! Welcome to the Playback view!");
     textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(textbox);
-    textbox = new JLabel("Second line of instructions");
+    textbox = new JLabel("The animation is paused by default, press play" +
+            " to begin the animations");
     textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(textbox);
-    textbox = new JLabel("Third line of instructions");
+    textbox = new JLabel("Looping is also enabled by default, so once the animation ends it " +
+            "will restart. ");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
+    textbox = new JLabel("You can disable looping by pressing" +
+            " the \"disable looping\" button. ");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
+    textbox = new JLabel("You can also increase or decrease the speed of the animation by " +
+            "pressing the respective buttons.");
+    textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
+    buttonPanel.add(textbox);
+    textbox = new JLabel("Once you are done, you can exit the program by closing the window.");
     textbox.setAlignmentX(Component.CENTER_ALIGNMENT);
     buttonPanel.add(textbox);
     textbox = new JLabel(" ");

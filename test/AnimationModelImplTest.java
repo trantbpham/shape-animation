@@ -390,7 +390,7 @@ public class AnimationModelImplTest {
   }
 
   /**
-   * Testing if shape is removed properly from the animation. 
+   * Testing if shape is removed properly from the animation.
    */
   @Test
   public void testRemoveShape() {

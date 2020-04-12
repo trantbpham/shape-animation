@@ -44,7 +44,7 @@ public interface PlaybackInterface {
   boolean getLoop();
 
   /**
-   * Returns the value of the frame delay of the animation
+   * Returns the value of the frame delay of the animation.
    *
    * @return double - the time in milliseconds between frames.
    */

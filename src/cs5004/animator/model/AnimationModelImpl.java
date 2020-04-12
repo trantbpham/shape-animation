@@ -152,7 +152,6 @@ public class AnimationModelImpl implements AnimationModel {
 
     for (String each : animationHistory) {
       if (each.equals(name)) {
-//        animationHistory.remove(shapes.get(name).getShapeCreateCaption());
         animationHistory.add(shapes.get(name).removeShapeCaption());
         animationHistory.remove(shapes.get(name));
       }
@@ -300,6 +299,7 @@ public class AnimationModelImpl implements AnimationModel {
     return parameterOutput;
   }
 
+  @Override
   public StringBuilder getShapesNamInAnimation() {
     StringBuilder returnString = new StringBuilder("");
     if (shapes.isEmpty()) {
@@ -308,14 +308,14 @@ public class AnimationModelImpl implements AnimationModel {
     Iterator<String> iter = animationHistory.iterator();
     for (String each : shapes.keySet()) {
       returnString.append(each);
-        returnString.append(", ");
+      returnString.append(", ");
     }
     returnString.setLength(returnString.length() - 2);
     return returnString;
   }
+
   @Override
   public String toString() {
-
     String returnString = "{";
 
 

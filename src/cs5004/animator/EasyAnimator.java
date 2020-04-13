@@ -85,10 +85,10 @@ public final class EasyAnimator {
       switch (view) {
         case "text":
           TextAnimationView textView = new TextAnimationView(model);
-          System.out.print(textView.animationHistoryToString());
+          System.out.print(textView.printScript());
           File outputFile = new File(outFile);
           outputStream = new FileWriter(outputFile);
-          outputStream.write(textView.animationHistoryToString().toString());
+          outputStream.write(textView.printScript().toString());
           break;
         case "svg":
           SvgAnimationView svgView = new SvgAnimationView(model, speed);

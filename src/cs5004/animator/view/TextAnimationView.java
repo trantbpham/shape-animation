@@ -65,77 +65,62 @@ public class TextAnimationView implements ScriptView {
       }
 
       for (int i = 0; i < currentShape.getFromXDestinationSize(); i++) {
-        if (((currentShape.getFromXDestination(i) < currentShape.getMoveXDestination(i))
-                || (currentShape.getFromXDestination(i) > currentShape.getMoveXDestination(i)))) {
-          returnString.append(currentShape.getName() + " moves from ("
-                  + currentShape.getFromXDestination(i) + ", " + currentShape.getFromYDestination(i)
-                  + ") to (" + currentShape.getMoveXDestination(i) + ", "
-                  + currentShape.getMoveYDestination(i) + ") from time t = "
-                  + currentShape.getMotionMoveStartTime(i) + " to t = "
-                  + currentShape.getMotionMoveEndTime(i)
-                  + "\n");
+        returnString.append(currentShape.getName() + " moves from ("
+                + currentShape.getFromXDestination(i) + ", " + currentShape.getFromYDestination(i)
+                + ") to (" + currentShape.getMoveXDestination(i) + ", "
+                + currentShape.getMoveYDestination(i) + ") from time t = "
+                + currentShape.getMotionMoveStartTime(i) + " to t = "
+                + currentShape.getMotionMoveEndTime(i)
+                + "\n");
 
-        }
       }
       for (int i = 0; i < currentShape.getFromYDestinationSize(); i++) {
-        if (((currentShape.getFromYDestination(i) < currentShape.getMoveYDestination(i))
-                || (currentShape.getFromYDestination(i) > currentShape.getMoveXDestination(i)))) {
-          returnString.append(currentShape.getName() + " moves from ("
-                  + currentShape.getFromXDestination(i) + ", " + currentShape.getFromYDestination(i)
-                  + ") to (" + currentShape.getMoveXDestination(i) + ", "
-                  + currentShape.getMoveYDestination(i) + ") from time t = "
-                  + currentShape.getMotionMoveStartTime(i) + " to t = "
-                  + currentShape.getMotionMoveEndTime(i)
+        returnString.append(currentShape.getName() + " moves from ("
+                + currentShape.getFromXDestination(i) + ", " + currentShape.getFromYDestination(i)
+                + ") to (" + currentShape.getMoveXDestination(i) + ", "
+                + currentShape.getMoveYDestination(i) + ") from time t = "
+                + currentShape.getMotionMoveStartTime(i) + " to t = "
+                + currentShape.getMotionMoveEndTime(i)
+                + "\n");
+      }
+
+      for (int k = 0; k < currentShape.getWidthDestinationSize(); k++) {
+        returnString.append(currentShape.getName() + " resizes from Width: "
+                + currentShape.getFromWidthDestination(k) + ", Height: "
+                + currentShape.getFromHeightDestination(k)
+                + " to Width: " + currentShape.getWidthDestination(k) + ", Height: "
+                + currentShape.getHeightDestination(k) + ") from time t = "
+                + currentShape.getMotionResizeStartTime(k) + " to t = "
+                + currentShape.getMotionResizeEndtime(k)
+                + "\n");
+      }
+
+      for (int l = 0; l < currentShape.getHeightDestinationSize(); l++) {
+        returnString.append(currentShape.getName() + " resizes from Width: "
+                + currentShape.getFromWidthDestination(l) + ", Height: "
+                + currentShape.getFromHeightDestination(l)
+                + " to Width: " + currentShape.getWidthDestination(l) + ", Height: "
+                + currentShape.getHeightDestination(l) + ") from time t = "
+                + currentShape.getMotionResizeStartTime(l) + " to t = "
+                + currentShape.getMotionResizeEndtime(l)
+                + "\n");
+      }
+      for (int m = 0; m < currentShape.getColorSize(); m++) {
+        if (((currentShape.getFromRColor(m) < currentShape.getRColorDestination(m))
+                || (currentShape.getFromRColor(m) < currentShape.getRColorDestination(m)))
+                && ((currentShape.getFromBColor(m) < currentShape.getBColorDestination(m))
+                || (currentShape.getFromBColor(m) > currentShape.getBColorDestination(m)))
+                && ((currentShape.getFromGColor(m) < currentShape.getGColorDestination(m))
+                || (currentShape.getFromGColor(m) > currentShape.getGColorDestination(m)))) {
+          returnString.append(currentShape.getName() + " changes color from ( "
+                  + currentShape.getFromRColor(m) + ", " + currentShape.getFromGColor(m) + ", "
+                  + currentShape.getFromBColor(m)
+                  + " to (" + currentShape.getRColorDestination(m) + ", "
+                  + currentShape.getGColorDestination(m) + ", "
+                  + currentShape.getBColorDestination(m) + ") from time t = "
+                  + currentShape.getColorStartTime(m) + " to t = "
+                  + currentShape.getColorEndTime(m)
                   + "\n");
-        }
-
-        for (int k = 0; k < currentShape.getWidthDestinationSize(); k++) {
-          if ((currentShape.getWidthDestination(k) < currentShape.getFromWidthDestination(k))
-                  || (currentShape.getWidthDestination(k) >
-                  currentShape.getFromWidthDestination(k))) {
-            returnString.append(currentShape.getName() + " resizes from Width: "
-                    + currentShape.getFromWidthDestination(k) + ", Height: "
-                    + currentShape.getFromHeightDestination(k)
-                    + " to Width: " + currentShape.getWidthDestination(k) + ", Height: "
-                    + currentShape.getHeightDestination(k) + ") from time t = "
-                    + currentShape.getMotionResizeStartTime(k) + " to t = "
-                    + currentShape.getMotionResizeEndtime(k)
-                    + "\n");
-          }
-        }
-        for (int l = 0; l < currentShape.getHeightDestinationSize(); l++) {
-          if ((currentShape.getHeightDestination(l) < currentShape.getFromHeightDestination(l))
-                  || (currentShape.getHeightDestination(l) >
-                  currentShape.getFromHeightDestination(l))) {
-            returnString.append(currentShape.getName() + " resizes from Width: "
-                    + currentShape.getFromWidthDestination(l) + ", Height: "
-                    + currentShape.getFromHeightDestination(l)
-                    + " to Width: " + currentShape.getWidthDestination(l) + ", Height: "
-                    + currentShape.getHeightDestination(l) + ") from time t = "
-                    + currentShape.getMotionResizeStartTime(l) + " to t = "
-                    + currentShape.getMotionResizeEndtime(l)
-                    + "\n");
-          }
-        }
-        for (int m = 0; m < currentShape.getColorSize(); m++) {
-          if (((currentShape.getFromRColor(m) < currentShape.getRColorDestination(m))
-                  || (currentShape.getFromRColor(m) < currentShape.getRColorDestination(m)))
-                  && ((currentShape.getFromBColor(m) < currentShape.getBColorDestination(m))
-                  || (currentShape.getFromBColor(m) > currentShape.getBColorDestination(m)))
-                  && ((currentShape.getFromGColor(m) < currentShape.getGColorDestination(m))
-                  || (currentShape.getFromGColor(m) > currentShape.getGColorDestination(m)))) {
-            returnString.append(currentShape.getName() + " changes color from ( "
-                    + currentShape.getFromRColor(m) + ", " + currentShape.getFromGColor(m) + ", "
-                    + currentShape.getFromBColor(m)
-                    + " to (" + currentShape.getRColorDestination(m) + ", "
-                    + currentShape.getGColorDestination(m) + ", "
-                    + currentShape.getBColorDestination(m) + ") from time t = "
-                    + currentShape.getColorStartTime(m) + " to t = "
-                    + currentShape.getColorEndTime(m)
-                    + "\n");
-          }
-
-
         }
 
 
@@ -143,8 +128,9 @@ public class TextAnimationView implements ScriptView {
 
 
     }
-    returnString.setLength(returnString.length() - 1);
+    
+    returnString.setLength(returnString.length()-1);
     return returnString;
-  }
+}
 
 }

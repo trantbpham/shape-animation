@@ -1,7 +1,9 @@
 package cs5004.animator.view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import cs5004.animator.model.AbstractShape;
 import cs5004.animator.model.AnimationModelImpl;
@@ -37,7 +39,9 @@ public class TextAnimationView implements ScriptView {
 
     HashMap<String, AbstractShape> map = animationModel.getShape();
     ArrayList<AbstractShape> shapeList = new ArrayList<>();
-    for (String name : map.keySet()) {
+    List<String> keyList = new ArrayList<String>(map.keySet());
+    Collections.sort(keyList);
+    for (String name : keyList) {
       shapeList.add(map.get(name));
     }
 
@@ -128,7 +132,7 @@ public class TextAnimationView implements ScriptView {
 
 
     }
-    
+
     returnString.setLength(returnString.length()-1);
     return returnString;
 }

@@ -130,12 +130,14 @@ The application control consist of:
 
 
 
+================== VIEW UPDATES ASSIGNMENT 10 ================================
 
-
-=====================================================================
-View Updates:
-Modify the SVG View to have it works better than previous assignment. 
-From assignment 8, the shapes were jumping around due to the incorrect 
-script. Updated SVG view sorts the shape in order in XML, as well as 
-printing movements of the shape even when it's not moving. This fix the
-issue of shapes jumping around. 
+    1. Modify the SVG View to have it works better than previous assignment. 
+        From assignment 8, the shapes were jumping around due to the incorrect 
+        script. Updated SVG view sorts the shape in order in XML, as well as 
+        printing movements of the shape even when it's not moving. This fix the
+        issue of shapes jumping around. 
+    2. Refactor colorConvert method in both SVG and Text view into a static 
+        method in ScriptView interface. Refactor both views print method to have 
+        the same name so it also can be shared in the interface, since the
+        functionality is the same. 

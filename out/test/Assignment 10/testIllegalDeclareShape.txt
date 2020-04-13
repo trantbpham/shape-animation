@@ -1,0 +1,5 @@
+canvas 200 70 360 360
+
+shape testrectangle rectangl
+
+shape testellipse ellipse

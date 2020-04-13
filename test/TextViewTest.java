@@ -215,7 +215,7 @@ public class TextViewTest {
                     "t = 505 to t = 515\n" +
                     "disk5 moves from (445.0, 50.0) to (445.0, 240.0) from time " +
                     "t = 527 to t = 537",
-            textView.animationHistoryToString().toString());
+            textView.printScript().toString());
   }
 }
 

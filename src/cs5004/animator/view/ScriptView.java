@@ -1,7 +1,12 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+import java.awt.Color;
 
+/**
+ * ScriptView is the interface for text based output views such as TextAnimationView and SVG
+ *     AnimationView. The methods they share are colorConvert and printScript which returns a
+ *     textual output of the model's information.
+ */
 public interface ScriptView {
 
   /**

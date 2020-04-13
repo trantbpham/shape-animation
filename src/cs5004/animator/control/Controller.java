@@ -42,8 +42,6 @@ public class Controller implements ActionListener, IController {
   public void actionPerformed(ActionEvent e) {
     String action = e.getActionCommand();
     switch (action) {
-      default:
-        break;
       case PLAY:
         view.play();
         break;
@@ -71,6 +69,9 @@ public class Controller implements ActionListener, IController {
         } catch (IllegalArgumentException i) {
           view.popupErrorMessageDialogue();
         }
+        break;
+      default:
+        break;
     }
   }
 

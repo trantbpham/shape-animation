@@ -48,8 +48,7 @@ public class TextAnimationView implements ScriptView {
     StringBuilder returnString = new StringBuilder("");
 
     for (AbstractShape currentShape : shapeList) {
-      if (currentShape.getShapeType
-              () == ShapeType.Rectangle) {
+      if (currentShape.getShapeType() == ShapeType.Rectangle) {
         returnString.append("Create rectangle " + currentShape.getName() + " with color "
                 + ScriptView.colorConvert(currentShape.getColor(0))
                 + " and corner at (" + currentShape.getX(0) + ", "
@@ -133,8 +132,7 @@ public class TextAnimationView implements ScriptView {
 
     }
 
-    returnString.setLength(returnString.length()-1);
+    returnString.setLength(returnString.length() - 1);
     return returnString;
-}
-
+  }
 }
